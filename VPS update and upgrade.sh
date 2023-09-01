@@ -12,9 +12,7 @@ architecture=$(uname -m)
 
 # 检查可用更新
 
-if [ "${distribution}" == "CentOS" ]; then
-    available_updates=$(yum list available)
-elif [ "${distribution}" == "Ubuntu" ]; then
+if [ "${distribution}" == "Ubuntu" ]; then
     available_updates=$(apt list --upgradable)
 else
     echo "Unsupported distribution"
@@ -26,11 +24,7 @@ fi
 if [ -z "${available_updates}" ]; then
     echo "No updates available"
 else
-    if [ "${distribution}" == "CentOS" ]; then
-        upgrade_command="yum update && yum upgrade"
-    elif [ "${distribution}" == "Ubuntu" ]; then
-        upgrade_command="apt update && apt upgrade"
-    fi
+    upgrade_command="apt update && apt upgrade"
 
     echo "Running ${upgrade_command}"
     ${upgrade_command}

@@ -11,7 +11,7 @@ else
 fi
 
 # 检查Python是否已安装
-if [ -x "$(command -v python)" ]; then
+if [ -x "$(python --version)" ]; then
     echo "Python已经安装"
 else
     echo "Python未安装。正在安装..."
@@ -25,7 +25,7 @@ else
 fi
 
 # 检查pip是否已安装
-if [ -x "$(command -v pip)" ]; then
+if [ -x "$(pip --version)" ]; then
     echo "pip已经安装"
     
     # 检查pip版本是否为最新，如果不是则进行升级
@@ -39,13 +39,7 @@ else
     if [ -x "$(command -v apt-get)" ]; then
         sudo apt-get update
         sudo apt-get install -y python-pip
-    
-        sudo apt-get update
-        sudo apt-get install -y
     else
-        sudo yum update
-        sudo yum install -y python-pip
-    
         sudo yum update
         sudo yum install -y python-pip
     fi

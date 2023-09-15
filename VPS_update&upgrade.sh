@@ -29,9 +29,9 @@ if [ -x "$(command -v pip3)" ]; then
     echo "pip3已经安装"
     
 # 检查pip版本是否为最新，如果不是则进行升级
-    if [ "$(pip3 --version | awk '{print $2}' | cut -d'.' -f1)" -lt 21 ]; then
+    if [ "$(pip3 --version | awk '{print $2}' | cut -d'.' -f1)" -lt 23 ]; then
         echo "pip版本不是最新版。正在升级..."
-        sudo pip3 install --upgrade pip
+        sudo pip3 install --upgrade --force pip
     fi
 else
     echo "pip3未安装。正在安装..."

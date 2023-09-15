@@ -17,10 +17,10 @@ else
     echo "Python 3未安装。正在安装..."
     if [ -x "$(command -v apt-get)" ]; then
       sudo apt-get update
-      sudo apt-get install -y python3
+      sudo apt-get install -y python3.10.12
     else
       sudo yum update
-      sudo yum install -y python3
+      sudo yum install -y python3.10.12
     fi
 fi
 

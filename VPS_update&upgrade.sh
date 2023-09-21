@@ -82,14 +82,6 @@ if [ -x "$(command -v docker-ce)" ]; then
     echo "docker-ce已安装"
 else
      echo "docker-ce未安装。正在安装..."
-
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-
-sudo add-apt-repository \
-   "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
-    $$(lsb_release -cs) \
-   stable"
-
  
     if [ -x "$(command -v apt-get)" ]; then
         sudo apt-get update

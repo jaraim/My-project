@@ -111,5 +111,5 @@ python3 --version
 pip3 --version
 git --version
 docker --version
-docker-ce --version
+docker --engine
 docker-compose --version

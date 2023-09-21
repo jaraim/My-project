@@ -63,31 +63,42 @@ else
 fi
 
 # 检查Docker是否已安装
-if dpkg -l | grep -q "docker-ce"; then
-    echo "Docker is already installed."
-else
-    echo "Docker is not installed. Installing..."
-    sudo apt-get update
-    sudo apt-get install -y docker.io docker-ce docker-compose
+if [ -x "$(command -v docker)" ]; then
+    echo "docker已安装"
+echo "docker未安装。正在安装..."
+    if [ -x "$(command -v apt-get)" ]; then
+        sudo apt-get update
+        sudo apt-get install -y docker.io
+    else
+        sudo yum update
+        sudo yum install -y docker.io
+    fi
 fi
 
 # 检查docker-ce是否已安装
-if dpkg -l | grep -q "docker-ce-cli"; then
-    echo "docker-ce is already installed."
-else
-    echo "docker-ce is not installed. Installing..."
-    sudo apt-get update
-    sudo apt-get install -y docker.io docker-ce docker-ce-cli containerd.io
+if [ -x "$(command -v docker-ce)" ]; then
+    echo "docker-ce已安装"
+echo "docker-ce未安装。正在安装..."
+    if [ -x "$(command -v apt-get)" ]; then
+        sudo apt-get update
+        sudo apt-get install -y docker-ce
+    else
+        sudo yum update
+        sudo yum install -y docker-ce
+    fi
 fi
 
 # 检查docker-compose是否已安装
-if dpkg -l | grep -q "docker-compose"; then
-    echo "docker-compose is already installed."
-else
-    echo "docker-compose is not installed. Installing..."
-    sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-    sudo chmod +x /usr/local/bin/docker-compose
-    sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+if [ -x "$(command -v docker-compose)" ]; then
+    echo "docker-compose已安装"
+echo "docker-compose未安装。正在安装..."
+    if [ -x "$(command -v apt-get)" ]; then
+        sudo apt-get update
+        sudo apt-get install -y docker-compose
+    else
+        sudo yum update
+        sudo yum install -y docker-compose
+    fi
 fi
 
 # 检查Python3，pip3，git,docker,docker-ce,docker-compose是否安装成功

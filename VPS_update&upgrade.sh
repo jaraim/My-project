@@ -97,8 +97,8 @@ sudo add-apt-repository \
     else
         sudo yum update
         sudo yum install -y docker-ce docker-ce-cli containerd.io
-fi
-
+    fi
+if 
 # 检查docker-compose是否已安装
 if [ -x "$(command -v docker-compose)" ]; then
     echo "docker-compose已安装"

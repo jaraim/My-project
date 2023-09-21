@@ -81,10 +81,10 @@ if [ -x "$(command -v docker-ce)" ]; then
 echo "docker-ce未安装。正在安装..."
     if [ -x "$(command -v apt-get)" ]; then
         sudo apt-get update
-        sudo apt-get install -y docker-ce
+        sudo apt-get install -y docker-ce && docker-ce-cli
     else
         sudo yum update
-        sudo yum install -y docker-ce
+        sudo yum install -y docker-ce && docker-ce-cli
     fi
 fi
 

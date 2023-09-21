@@ -65,7 +65,9 @@ fi
 # 检查Docker是否已安装
 if [ -x "$(command -v docker)" ]; then
     echo "docker已安装"
-echo "docker未安装。正在安装..."
+else
+    echo "docker未安装。正在安装..."
+
     if [ -x "$(command -v apt-get)" ]; then
         sudo apt-get update
         sudo apt-get install -y docker.io
@@ -78,7 +80,8 @@ fi
 # 检查docker-ce是否已安装
 if [ -x "$(command -v docker-ce)" ]; then
     echo "docker-ce已安装"
-echo "docker-ce未安装。正在安装..."
+else
+     echo "docker-ce未安装。正在安装..."
 
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 
@@ -99,7 +102,8 @@ fi
 # 检查docker-compose是否已安装
 if [ -x "$(command -v docker-compose)" ]; then
     echo "docker-compose已安装"
-echo "docker-compose未安装。正在安装..."
+else
+    echo "docker-compose未安装。正在安装..."
     if [ -x "$(command -v apt-get)" ]; then
         sudo apt-get update
         sudo apt-get install -y docker-compose

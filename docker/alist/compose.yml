@@ -1,0 +1,17 @@
+#echo "
+version: '3.8' 
+
+services: 
+
+  alist:
+    image: jaraim/alist:latest
+    restart: always
+    ports: 
+      - 5244:5244
+    environment:
+      - PUID=0 
+      - PGID=0 
+      - UMASK= 022
+    volumes: 
+      - /etc/alist:/opt/alist/data
+#" > compose.yml

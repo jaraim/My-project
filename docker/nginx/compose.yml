@@ -1,0 +1,16 @@
+#echo "
+version: '3' 
+
+services: 
+
+  nginx:
+    image: jaraim/nginx:latest  
+    restart: always
+    ports: 
+      - 80:80
+      - 81:81  
+    # environment: 
+    volumes: 
+      - /home/nginx/data:/data  
+      - /home/nginx/letsencrypt:/etc/letsencrypt 
+#" > compose.yml

@@ -1,4 +1,4 @@
-echo "
+#echo "
 version: '3.8' 
 
 services: 
@@ -13,4 +13,4 @@ services:
     volumes: 
       - /home/nginx/data:/data  
       - /home/nginx/letsencrypt:/etc/letsencrypt 
-" > compose.yml
+#" > compose.yml

@@ -29,6 +29,8 @@ services:
       - MYSQL_PASSWORD=examplepass  # 设置环境变量MYSQL_PASSWORD为examplepass
       - MYSQL_RANDOM_ROOT_PASSWORD= 1 # 设置环境变量MYSQL_RANDOM_ROOT_PASSWORD为'1'
     volumes: # 设置挂载
-      - mysql:/var/lib/mysql  # 将宿主机的/var/lib/mysql目录挂载到容器的/var/lib/mysql目录
-    # volumes: 
+      - /mysql:/var/lib/mysql  # 将宿主机的/var/lib/mysql目录挂载到容器的/var/lib/mysql目录
+volumes: 
+  wordpress:
+  mysql:
 #" > compose.yml

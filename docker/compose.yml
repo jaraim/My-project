@@ -3,15 +3,17 @@ version: '3.1' # docker compose版本
 services: # 设置服务器
 
   web: # web服务
-    image: jaraim/nginx  # 使用jaraim/nginx镜像
-    restart: always  # 服务重启策略为always
-    ports: # 配置端口
-      - 80:80  # 将容器的80端口映射到宿主机的80端口
-      - 81:81  # 将容器的81端口映射到宿主机的81端口
-    # environment: # 设置环境变量
-    volumes: # 设置挂载
-      - /home/nginx/data:/data  # 将宿主机的/home/nginx/data目录挂载到容器的/data目录
-      - /home/nginx/letsencrypt:/etc/letsencrypt  # 将宿主机的/home/nginx/letsencrypt目录挂载到容器的/etc/letsencrypt目录
+    inginx:
+    image: jaraim/nginx:latest  
+    restart: always
+    ports: 
+      - 80:80
+      - 81:81  
+    # environment: 
+    volumes: 
+      - /home/nginx/data:/data  
+      - /home/nginx/letsencrypt:/etc/letsencrypt 
+      
 
   chatgpt: # chatgpt服务
     image: jaraim/chatgpt:latest  # 使用jaraim/chatgpt:latest镜像
@@ -22,10 +24,11 @@ services: # 设置服务器
       - PANDORA_CLOUD=cloud  # 设置PANDORA_CLOUD环境变量为cloud
       - PANDORA_SERVER=0.0.0.0:8899  # 设置PANDORA_SERVER环境变量为0.0.0.0:8899
       - OPENAI_API_KEY=YOUR_API_KEY  # 设置OPENAI_API_KEY环境变量为YOUR_API_KEY
+      - OPENAI_ACCESS_TOKEN=YOUR_ACCESS_TOKEN
     # volumes: # 设置挂载
 
   alist: # 配置alist服务
-    image: jaraim/alist  # 使用jaraim/alist镜像
+    image: jaraim/alist:latest  # 使用jaraim/alist镜像
     restart: always  # 服务重启策略为always
     ports: # 配置端口
       - 5244:5244  # 将容器的5244端口映射到宿主机的5244端口
@@ -37,33 +40,35 @@ services: # 设置服务器
       - /etc/alist:/opt/alist/data  # 将宿主机的/etc/alist目录挂载到容器的/opt/alist/data目录
 
   wordpress: # 配置wordpress服务
-    image: wordpress  # 使用wordpress镜像
+    image: jaraim/wordpress:latest  # 使用wordpress镜像
     restart: always  # 服务重启策略为always
     ports: # 配置端口
-      - 8080:80  # 将容器的8080端口映射到宿主机的80端口
+      - 8080:80  # 将容器的2000端口映射到宿主机的80端口
+    depends_on: 
+      - mysql
     environment:  # 设置环境变量
-      - WORDPRESS_DB_HOST=db   #设置环境变量WORDPRESS_DB_HOST为db
+      - WORDPRESS_DB_HOST=mysql  #设置环境变量WORDPRESS_DB_HOST为db
       - WORDPRESS_DB_USER=exampleuser      # 设置环境变量WORDPRESS_DB_USER为exampleuser
       - WORDPRESS_DB_PASSWORD=examplepass  # 设置环境变量WORDPRESS_DB_PASSWORD为examplepass
       - WORDPRESS_DB_NAME=exampledb        # 设置环境变量WORDPRESS_DB_NAME为exampledb
     volumes: # 设置挂载
-      - wordpress:/var/www/html  # 将宿主机的/wordpress目录挂载到容器的/var/www/html目录
+      - wordpress:/var/wordpress/www/html  # 将宿主机的/wordpress目录挂载到容器的/var/www/html目录
 
-  db: # 配置数据库服务
-    image: mysql:5.7  # 使用mysql:5.7镜像
+  mysql: # 配置数据库服务
+    image: jaraim/mysql:latest 
     restart: always  # 服务重启策略为always
+    ports:
+      - 3306:3306
     environment: # 设置环境变量
       - MYSQL_DATABASE=exampledb   # 设置环境变量MYSQL_DATABASE为exampledb
       - MYSQL_USER=exampleuser     # 设置环境变量MYSQL_USER为exampleuser
       - MYSQL_PASSWORD=examplepass  # 设置环境变量MYSQL_PASSWORD为examplepass
       - MYSQL_RANDOM_ROOT_PASSWORD= 1 # 设置环境变量MYSQL_RANDOM_ROOT_PASSWORD为'1'
-
     volumes: # 设置挂载
-      - db:/var/lib/mysql  # 将宿主机的/var/lib/mysql目录挂载到容器的/var/lib/mysql目录
-
+      - mysql:/var/lib/mysql  # 将宿主机的/var/lib/mysql目录挂载到容器的/var/lib/mysql目录
 volumes:
   web:
   chatgpt:
   alist:
   wordpress:
-  db:
+  mysql:

@@ -1,9 +1,9 @@
-version: '3.1' # docker compose版本
+echo "
+version: '3.8' 
 
-services: # 设置服务器
+services: 
 
-  web: # web服务
-    inginx:
+  nginx:
     image: jaraim/nginx:latest  
     restart: always
     ports: 
@@ -55,7 +55,7 @@ services: # 设置服务器
       - wordpress:/var/wordpress/www/html  # 将宿主机的/wordpress目录挂载到容器的/var/www/html目录
 
   mysql: # 配置数据库服务
-    image: jaraim/mysql:latest 
+    image: jaraim/mysql:latest # 使用mysql:5.7镜像
     restart: always  # 服务重启策略为always
     ports:
       - 3306:3306
@@ -66,9 +66,40 @@ services: # 设置服务器
       - MYSQL_RANDOM_ROOT_PASSWORD= 1 # 设置环境变量MYSQL_RANDOM_ROOT_PASSWORD为'1'
     volumes: # 设置挂载
       - mysql:/var/lib/mysql  # 将宿主机的/var/lib/mysql目录挂载到容器的/var/lib/mysql目录
+  
+  rocketchat:
+    image: jaraim/rocketchat:latest
+    restart: always
+    ports: # 配置端口
+      - 3000:3000  
+    depends_on: 
+      - mongo
+    environment:  # 设置环境变量
+      - WORDPRESS_DB_HOST=mongo  #设置环境变量WORDPRESS_DB_HOST为db
+      - WORDPRESS_DB_USER=exampleuser      # 设置环境变量WORDPRESS_DB_USER为exampleuser
+      - WORDPRESS_DB_PASSWORD=examplepass  # 设置环境变量WORDPRESS_DB_PASSWORD为examplepass
+      - WORDPRESS_DB_NAME=exampledb        # 设置环境变量WORDPRESS_DB_NAME为exampledb
+    volumes: # 设置挂载
+      - rocketchat:/var/rocketchat/www/html  # 将宿主机的/wordpress目录挂载到容器的/var/www/html目录
+
+  mongo:
+    image: jaraim/mongo:latest
+    restart: always
+    ports:
+      - 2017:2017
+    environment: # 设置环境变量
+      - MONGO_DATABASE=exampledb   # 设置环境变量MYSQL_DATABASE为exampledb
+      - MONGO_USER=exampleuser     # 设置环境变量MYSQL_USER为exampleuser
+      - MONGO_PASSWORD=examplepass  # 设置环境变量MYSQL_PASSWORD为examplepass
+      - MONGO_RANDOM_ROOT_PASSWORD= 1 # 设置环境变量MYSQL_RANDOM_ROOT_PASSWORD为'1'
+    volumes: # 设置挂载
+      - mongo:/var/lib/mongo # 将宿主机的/var/lib/mysql目录挂载到容器的/var/lib/mysql目录
 volumes:
   web:
   chatgpt:
   alist:
   wordpress:
   mysql:
+  rocketchat:
+  mongo: 
+ " > compose.yml

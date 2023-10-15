@@ -1,26 +1,46 @@
 #echo "
 version: '3.8'
-services:
-    rsshub:
-        image: jaraim/rsshub:latest
-        restart: always
-        ports:
-            - '1200:1200'
-        environment:
-            NODE_ENV: production
-            CACHE_TYPE: redis
-            REDIS_URL: 'redis://redis:6379/'
-            PROXY_URI: 'socks5h://warp-socks:9091'
-        depends_on:
-            - redis
 
-    redis:
-        image: jaraim/redis:latest
-        restart: always
-        volumes:
-            - redis:/data
-            
+services:
+  freshrss:
+    image: freshrss/freshrss:edge
+    container_name: freshrss
+    restart: unless-stopped
+    ports:
+      - 8080:80
+    logging:
+      options:
+        max-size: 10m
+    volumes:
+      - data:/var/www/FreshRSS/data
+    environment:
+      TZ: Europe/Paris
+      CRON_MIN: '2,32'
+      FRESHRSS_ENV: development
+      FRESHRSS_API_URL: https://your-rsshub-url/api/v1/feeds
+      FRESHRSS_API_KEY: your-rsshub-api-key
+
+  rsshub:
+     image: jaraim/rsshub:latest
+     restart: always
+     ports:
+      - '1200:1200'
+     environment:
+      NODE_ENV: production
+      CACHE_TYPE: redis
+      REDIS_URL: 'redis://redis:6379/'
+      PROXY_URI: 'socks5h://warp-socks:9091'
+     depends_on:
+      - redis
+
+  redis:
+     image: jaraim/redis:latest
+     restart: always
+     volumes:
+     - redis:/data
 volumes:
+    freshrss:
+    data:
     rsshub:
     redis:
  #" > compose.yml

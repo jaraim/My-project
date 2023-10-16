@@ -3,7 +3,7 @@ version: '3.8'
 
 services:
   twonav:
-    image: tznb/twonav:latest
+    image: jaraim/twonav:latest
     restart: always
     ports:
       - 8088:80

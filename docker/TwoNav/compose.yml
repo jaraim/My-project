@@ -1,0 +1,12 @@
+#echo "
+version: '3.8'
+
+services:
+  twonav:
+    image: tznb/twonav:latest
+    restart: always
+    ports:
+      - 8088:80
+    volumes:
+      - /root/TwoNav:/www
+ #" > compose.yml

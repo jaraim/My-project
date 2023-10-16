@@ -1,0 +1,22 @@
+#echo "
+version: '3.8'
+volumes:
+  data:
+
+services:
+  freshrss:
+    image: freshrss/freshrss:edge
+    container_name: freshrss
+    restart: unless-stopped
+    logging:
+      options:
+        max-size: 10m
+    volumes:
+      - data:/var/www/FreshRSS/data
+    ports:
+      - 8080:80
+    environment:
+      TZ: Europe/Paris
+      CRON_MIN: '2,32'
+      FRESHRSS_ENV: development
+ #" > compose.yml

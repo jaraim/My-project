@@ -5,9 +5,8 @@ volumes:
 
 services:
   freshrss:
-    image: freshrss/freshrss:edge
-    container_name: freshrss
-    restart: unless-stopped
+    image: jaraim/freshrss:latest
+    restart: always
     logging:
       options:
         max-size: 10m

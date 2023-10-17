@@ -1,4 +1,4 @@
-#echo "
+echo "
 version: '3.8'
 volumes:
   data:
@@ -13,9 +13,9 @@ services:
     volumes:
       - data:/var/www/FreshRSS/data
     ports:
-      - 8080:80
+      - 8081:80
     environment:
       TZ: Europe/Paris
       CRON_MIN: '2,32'
       FRESHRSS_ENV: development
- #" > compose.yml
+" > compose.yml

@@ -1,5 +1,6 @@
 echo "
 version: '3.8'
+volumes:onenav
 services:
   onenav:
     image: jaraim/onenav:0.9.32

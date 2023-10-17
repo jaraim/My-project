@@ -1,12 +1,13 @@
-echo "
+#echo "
 version: '3.8'
-volumes:onenav
+volumes:
+  onenav:
 services:
   onenav:
     image: jaraim/onenav:0.9.32
     restart: always
     ports:
-      - 80:80
+      - 8088:80
     volumes:
       - /data/onenav:/data/wwwroot/default/data
-  " > compose.yml
+#" > compose.yml

@@ -2,23 +2,6 @@
 version: '3.8'
 
 services:
-  freshrss:
-    image: jaraim/freshrss:latest
-    restart: always
-    ports:
-      - 8081:80
-    logging:
-      options:
-        max-size: 10m
-    volumes:
-      - data:/var/www/FreshRSS/data
-    environment:
-      TZ: Europe/Paris
-      CRON_MIN: '2,32'
-      FRESHRSS_ENV: development
-      FRESHRSS_API_URL: https://your-rsshub-url/api/v1/feeds
-      FRESHRSS_API_KEY: your-rsshub-api-key
-
   rsshub:
      image: jaraim/rsshub:latest
      restart: always
@@ -31,15 +14,13 @@ services:
       PROXY_URI: 'socks5h://warp-socks:9091'
      depends_on:
       - redis
-
   redis:
      image: jaraim/redis:latest
      restart: always
      volumes:
      - redis:/data
-  
   warp-socks:
-    image: monius/docker-warp-socks:latest
+    image: jaraim/warp-socks:latest
     privileged: true
     volumes:
       - /lib/modules:/lib/modules
@@ -55,7 +36,6 @@ services:
       timeout: 10s
       retries: 5
 volumes:
-    freshrss:
     data:
     rsshub:
     redis:

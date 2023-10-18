@@ -1,9 +1,8 @@
 #echo "
 version: '3.8' 
-
-services: 
-  volumes:
+volumes:
      chatgpt:
+services: 
   chatgpt: 
     image: jaraim/chatgpt:latest
     container_name:chatgpt

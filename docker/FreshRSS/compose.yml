@@ -3,7 +3,7 @@ services:
   freshrss:
     image: jaraim/freshrss:latest
     container_name: freshrss
-    restart: always
+    restart: unless-stopped 
     logging:
       options:
         max-size: 10m

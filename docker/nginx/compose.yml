@@ -1,10 +1,11 @@
 #echo "
 version: '3.8' 
-
-services: 
-
+volumes: 
   nginx:
-    image: jaraim/nginx:latest  
+services: 
+  nginx:
+    image: jaraim/nginx:latest
+    container_name:nginx
     restart: always
     ports: 
       - 80:80

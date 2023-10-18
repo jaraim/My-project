@@ -21,7 +21,7 @@ services:
 
   mysql: # 配置数据库服务
     image: jaraim/mysql # 使用mysql:5.7镜像
-    container_name:mysql
+    container_name: mysql
     restart: always  # 服务重启策略为always
     ports:
       - 3306:3306

@@ -6,9 +6,9 @@ services:
   xui:
     image: jaraim/x-ui
     container_name: xui
-    volumes:
-      - ./db/:/etc/x-ui/
-      - ./cert/:/root/cert/
     restart: unless-stopped
     network_mode: host
+  volumes:
+      - ./db/:/etc/x-ui/
+      - ./cert/:/root/cert/   
 #" > compose.yml

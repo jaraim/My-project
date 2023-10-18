@@ -1,5 +1,7 @@
 #echo "
 version: '3.8'
+volumes:
+  xui:
 services:
   xui:
     image: jaraim/x-ui

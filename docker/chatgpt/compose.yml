@@ -5,7 +5,7 @@ volumes:
 services: 
   chatgpt: 
     image: jaraim/chatgpt:latest
-    container_name:chatgpt
+    container_name: chatgpt
     restart: always  
     ports:
       - 8899:8899  

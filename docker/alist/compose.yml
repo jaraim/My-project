@@ -1,10 +1,11 @@
 #echo "
 version: '3.8' 
-
+volumes: 
+  alist:
 services: 
-
   alist:
     image: jaraim/alist:latest
+    container_name:alist
     restart: always
     ports: 
       - 5244:5244

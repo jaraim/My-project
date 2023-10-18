@@ -4,6 +4,7 @@ version: '3.8'
 services:
   rsshub:
      image: jaraim/rsshub:latest
+     container_name:rsshub
      restart: always
      ports:
       - '1200:1200'
@@ -16,11 +17,13 @@ services:
       - redis
   redis:
      image: jaraim/redis:latest
+     container_name:redis
      restart: always
      volumes:
      - redis:/data
   warp-socks:
     image: jaraim/warp-socks:latest
+    container_name:warp-socks
     privileged: true
     volumes:
       - /lib/modules:/lib/modules

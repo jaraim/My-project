@@ -1,14 +1,14 @@
 #echo "
-version: '3.8'
-volumes:
-  xui:
-services:
-  xui:
+  version: '3.8'
+  volumes:
+     xui:
+  services:
+    xui:
     image: jaraim/x-ui
     container_name: xui
-    restart: unless-stopped
-    network_mode: host
     volumes:
       - ./db/:/etc/x-ui/
-      - ./cert/:/root/cert/   
+      - ./cert/:/root/cert/ 
+    restart: unless-stopped
+    network_mode: host
 #" > compose.yml

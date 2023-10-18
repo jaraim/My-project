@@ -1,7 +1,5 @@
 #echo "
 version: '3.8' 
-volumes:
-  nginx:
 services: 
   nginx:
     image: jaraim/nginx:latest
@@ -14,4 +12,6 @@ services:
     volumes: 
       - /home/nginx/data:/data  
       - /home/nginx/letsencrypt:/etc/letsencrypt 
+volumes:
+  nginx:      
 #" > compose.yml

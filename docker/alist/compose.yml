@@ -5,7 +5,7 @@ volumes:
 services: 
   alist:
     image: jaraim/alist:latest
-    container_name:alist
+    container_name: alist
     restart: always
     ports: 
       - 5244:5244

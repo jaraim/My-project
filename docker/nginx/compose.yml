@@ -11,7 +11,5 @@ services:
     # environment: 
     volumes: 
       - /home/nginx/data:/data  
-      - /home/nginx/letsencrypt:/etc/letsencrypt 
-volumes:
-  nginx:      
+      - /home/nginx/letsencrypt:/etc/letsencrypt   
 #" > compose.yml

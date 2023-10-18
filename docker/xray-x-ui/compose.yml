@@ -3,9 +3,9 @@
  volumes:
   xui:
  services:
- xui:
+  xui:
     image: jaraim/x-ui
-    container_name: xui 
+    container_name: xui
     restart: unless-stopped
     network_mode: host
     volumes:

@@ -2,9 +2,11 @@
 version: '3.8' 
 
 services: 
-
+  volumes:
+     chatgpt:
   chatgpt: 
     image: jaraim/chatgpt:latest
+    container_name:chatgpt
     restart: always  
     ports:
       - 8899:8899  
@@ -13,5 +15,5 @@ services:
       - PANDORA_SERVER=0.0.0.0:8899  
       - OPENAI_API_KEY=YOUR_API_KEY  
       - OPENAI_ACCESS_TOKEN=YOUR_ACCESS_TOKEN
-    # volumes: 
+     
 #" > compose.yml

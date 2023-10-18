@@ -5,7 +5,7 @@ services:
   rsshub:
      image: jaraim/rsshub:latest
      container_name: rsshub
-     restart: always
+     restart: unless-stopped 
      ports:
       - '1200:1200'
      environment:
@@ -18,7 +18,7 @@ services:
   redis:
      image: jaraim/redis:latest
      container_name: redis
-     restart: always
+     restart: unless-stopped 
      volumes:
      - redis:/data
   warp-socks:

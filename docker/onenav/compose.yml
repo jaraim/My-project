@@ -6,7 +6,7 @@ services:
   onenav:
     image: jaraim/onenav:0.9.32
     container_name: onenav
-    restart: always
+    restart: unless-stopped 
     ports:
       - 8088:80
     volumes:

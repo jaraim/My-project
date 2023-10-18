@@ -1,5 +1,7 @@
 #echo "
 version: '3.8' 
+volumes: 
+  nginx:
 services: 
   nginx:
     image: jaraim/nginx:latest

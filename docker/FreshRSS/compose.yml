@@ -2,6 +2,7 @@
 services:
   freshrss:
     image: jaraim/freshrss:latest
+    container_name:freshrss
     restart: always
     logging:
       options:

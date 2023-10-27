@@ -9,6 +9,6 @@
     restart: unless-stopped
     network_mode: host
     volumes:
-      - ./db/:/etc/x-ui/
-      - ./cert/:/root/cert/
+      - ./docker/xui/db:/etc/x-ui/
+      - ./docker/xui/cert:/root/cert/
 #" > compose.yml

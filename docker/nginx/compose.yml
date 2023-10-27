@@ -14,5 +14,6 @@ services:
       - 81:81
     volumes:
       - ./docker/nginx/data:/data
+      - ./docker/nginx/cert:/root/cert
       - ./docker/nginx/letsencrypt:/etc/letsencrypt
 #" > compose.yml

@@ -9,7 +9,7 @@ echo "
    freshrss:
    chatgpt: 
   
- services:
+services:
   xui:
     image: jaraim/x-ui
     container_name: xui

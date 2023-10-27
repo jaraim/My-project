@@ -1,116 +1,105 @@
 echo "
-version: '3.8' 
-
-services: 
-
+ version: '3.8'
+ volumes:
+  xui:
   nginx:
-    image: jaraim/nginx:latest  
-    restart: always
-    ports: 
-      - 80:80
-      - 81:81  
-    # environment: 
-    volumes: 
-      - /home/nginx/data:/data  
-      - /home/nginx/letsencrypt:/etc/letsencrypt 
-      
-
-  chatgpt: # chatgpt服务
-    image: jaraim/chatgpt:latest  # 使用jaraim/chatgpt:latest镜像
-    restart: always  # 服务重启策略为always
-    ports: # 配置端口
-      - 8899:8899  # 将容器的8899端口映射到宿主机的8899端口
-    environment: # 设置环境变量
-      - PANDORA_CLOUD=cloud  # 设置PANDORA_CLOUD环境变量为cloud
-      - PANDORA_SERVER=0.0.0.0:8899  # 设置PANDORA_SERVER环境变量为0.0.0.0:8899
-      - OPENAI_API_KEY=YOUR_API_KEY  # 设置OPENAI_API_KEY环境变量为YOUR_API_KEY
-      - OPENAI_ACCESS_TOKEN=YOUR_ACCESS_TOKEN
-    # volumes: # 设置挂载
-
-  alist: # 配置alist服务
-    image: jaraim/alist:latest  # 使用jaraim/alist镜像
-    restart: always  # 服务重启策略为always
-    ports: # 配置端口
-      - 5244:5244  # 将容器的5244端口映射到宿主机的5244端口
-    environment: # 设置环境变量
-      - PUID=0  # 设置环境变量PUID为0
-      - PGID=0  # 设置环境变量PGID为0
-      - UMASK= 022  # 设置环境变量UMASK为022
-    volumes: # 设置挂载
-      - /etc/alist:/opt/alist/data  # 将宿主机的/etc/alist目录挂载到容器的/opt/alist/data目录
-
-  wordpress: # 配置wordpress服务
-    image: jaraim/wordpress:latest  # 使用wordpress镜像
-    restart: always  # 服务重启策略为always
-    ports: # 配置端口
-      - 8080:80  # 将容器的2000端口映射到宿主机的80端口
-    depends_on: 
-      - mysql
-    environment:  # 设置环境变量
-      - WORDPRESS_DB_HOST=mysql  #设置环境变量WORDPRESS_DB_HOST为db
-      - WORDPRESS_DB_USER=exampleuser      # 设置环境变量WORDPRESS_DB_USER为exampleuser
-      - WORDPRESS_DB_PASSWORD=examplepass  # 设置环境变量WORDPRESS_DB_PASSWORD为examplepass
-      - WORDPRESS_DB_NAME=exampledb        # 设置环境变量WORDPRESS_DB_NAME为exampledb
-    volumes: # 设置挂载
-      - wordpress:/var/wordpress/www/html  # 将宿主机的/wordpress目录挂载到容器的/var/www/html目录
-
-  mysql: # 配置数据库服务
-    image: jaraim/mysql:latest # 使用mysql:5.7镜像
-    restart: always  # 服务重启策略为always
-    ports:
-      - 3306:3306
-    environment: # 设置环境变量
-      - MYSQL_DATABASE=exampledb   # 设置环境变量MYSQL_DATABASE为exampledb
-      - MYSQL_USER=exampleuser     # 设置环境变量MYSQL_USER为exampleuser
-      - MYSQL_PASSWORD=examplepass  # 设置环境变量MYSQL_PASSWORD为examplepass
-      - MYSQL_RANDOM_ROOT_PASSWORD= 1 # 设置环境变量MYSQL_RANDOM_ROOT_PASSWORD为'1'
-    volumes: # 设置挂载
-      - mysql:/var/lib/mysql  # 将宿主机的/var/lib/mysql目录挂载到容器的/var/lib/mysql目录
+  onenav:
+  wordpress:
+  mysql:
+  chatgpt: 
   
-  freshrss:
-    image: freshrss/freshrss:edge
-    container_name: freshrss
+ services:
+  xui:
+    image: jaraim/x-ui
+    container_name: xui
+    restart: unless-stopped
+    network_mode: host
+    volumes:
+      - ./docker/xui/db:/etc/x-ui
+      - ./docker/xui/cert:/root/cert
+      
+  nginx:
+    image: jaraim/nginx:latest
+    container_name: nginx
     restart: unless-stopped
     ports:
-      - 8081:80
+      - 80:80
+      - 81:81
+    volumes:
+      - ./docker/nginx/data:/data
+      - ./docker/nginx/cert:/root/cert
+      - ./docker/nginx/letsencrypt:/etc/letsencrypt
+      
+  onenav:
+    image: jaraim/onenav:0.9.32
+    container_name: onenav
+    restart: unless-stopped 
+    ports:
+      - 8088:80
+    volumes:
+      - ./docker/onenav:/data/wwwroot/default/data
+      
+  wordpress: 
+    image: jaraim/wordpress:latest 
+    container_name: wordpress
+    restart: unless-stopped  
+    ports: 
+      - 8080:80  
+    depends_on: 
+      - mysql
+    environment:  
+      - WORDPRESS_DB_HOST=mysql  
+      - WORDPRESS_DB_USER=exampleuser      
+      - WORDPRESS_DB_PASSWORD=examplepass  
+      - WORDPRESS_DB_NAME=exampledb        
+    volumes: 
+      - ./docker/wordpress:/var/wordpress/www/html
+
+  mysql: 
+    image: jaraim/mysql 
+    container_name: mysql
+    restart: unless-stopped  
+    ports:
+      - 3306:3306
+    environment: 
+      - MYSQL_DATABASE=exampledb  
+      - MYSQL_USER=exampleuser     
+      - MYSQL_PASSWORD=examplepass  
+      - MYSQL_RANDOM_ROOT_PASSWORD= 1 
+    volumes: 
+      - ./docker/wordpress/mysql:/var/lib/mysql
+      
+  freshrss:
+    image: jaraim/freshrss:latest
+    container_name: freshrss
+    restart: unless-stopped 
     logging:
       options:
         max-size: 10m
     volumes:
-      - data:/var/www/FreshRSS/data
+      - ./docker/data:/var/www/FreshRSS/data
+      - ./docker/extensions:/var/www/FreshRSS/extensions
+    ports:
+      - "8081:80"
     environment:
       TZ: Europe/Paris
       CRON_MIN: '2,32'
       FRESHRSS_ENV: development
-      FRESHRSS_API_URL: https://your-rsshub-url/api/v1/feeds
-      FRESHRSS_API_KEY: your-rsshub-api-key
-
-  rsshub:
-     image: jaraim/rsshub:latest
-     restart: always
-     ports:
-      - '1200:1200'
-     environment:
-      NODE_ENV: production
-      CACHE_TYPE: redis
-      REDIS_URL: 'redis://redis:6379/'
-      PROXY_URI: 'socks5h://warp-socks:9091'
-     depends_on:
-      - redis
-
-  redis:
-     image: jaraim/redis:latest
-     restart: always
-     volumes:
-     - redis:/data
-volumes:
-  web:
-  chatgpt:
-  alist:
-  wordpress:
-  mysql:
-  freshrss:
-  data:
-  rsshub:
-  redis:
- " > compose.yml
+      LISTEN: 0.0.0.0:80
+      TRUSTED_PROXY: 0.0.0.0
+      OIDC_ENABLED: 0
+      
+  chatgpt: 
+    image: jaraim/chatgpt:latest
+    container_name: chatgpt
+    restart: unless-stopped   
+    ports:
+      - 8899:8899
+    volumes:
+      - ./docker/chatgpt/data:/data
+    environment: 
+      - PANDORA_CLOUD=cloud  
+      - PANDORA_SERVER=0.0.0.0:8899  
+      - OPENAI_API_KEY=YOUR_API_KEY  
+      - OPENAI_ACCESS_TOKEN=YOUR_ACCESS_TOKEN
+" > compose.yml

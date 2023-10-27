@@ -1,13 +1,13 @@
-#echo "
+echo "
  version: '3.8'
  volumes:
-  xui:
-  nginx:
-  onenav:
-  wordpress:
-  mysql:
-  freshrss:
-  chatgpt: 
+   xui:
+   nginx:
+   onenav:
+   wordpress:
+   mysql:
+   freshrss:
+   chatgpt: 
   
  services:
   xui:
@@ -103,4 +103,4 @@
       - PANDORA_SERVER=0.0.0.0:8899  
       - OPENAI_API_KEY=YOUR_API_KEY  
       - OPENAI_ACCESS_TOKEN=YOUR_ACCESS_TOKEN
-#" > compose.yml
+" > compose.yml

@@ -4,6 +4,12 @@ echo "
   xui:
   nginx:
   onenav:
+echo "
+ version: '3.8'
+ volumes:
+  xui:
+  nginx:
+  onenav:
   wordpress:
   mysql:
   chatgpt: 
@@ -77,8 +83,8 @@ echo "
       options:
         max-size: 10m
     volumes:
-      - ./docker/data:/var/www/FreshRSS/data
-      - ./docker/extensions:/var/www/FreshRSS/extensions
+      - ./docker/freshrss/data:/var/www/FreshRSS/data
+      - ./docker/freshrss/extensions:/var/www/FreshRSS/extensions
     ports:
       - "8081:80"
     environment:

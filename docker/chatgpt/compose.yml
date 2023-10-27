@@ -9,8 +9,8 @@ services:
     restart: unless-stopped   
     ports:
       - 8899:80  
-    volume:
-    - ./docker/chatgpt/data
+    volumes:
+     - ./docker/chatgpt/data:/data
     environment: 
       - PANDORA_CLOUD=cloud  
       - PANDORA_SERVER=0.0.0.0:8899  

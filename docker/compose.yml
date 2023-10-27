@@ -1,5 +1,5 @@
-#echo "
 version: '3.8'
+
 volumes:
   xui:
   nginx:
@@ -7,9 +7,9 @@ volumes:
   wordpress:
   mysql:
   freshrss:
-  chatgpt: 
-  
- services:
+  chatgpt:
+
+services:
   xui:
     image: jaraim/x-ui
     container_name: xui
@@ -18,7 +18,7 @@ volumes:
     volumes:
       - ./docker/xui/db:/etc/x-ui
       - ./docker/xui/cert:/root/cert
-      
+
   nginx:
     image: jaraim/nginx:latest
     container_name: nginx
@@ -30,50 +30,50 @@ volumes:
       - ./docker/nginx/data:/data
       - ./docker/nginx/cert:/root/cert
       - ./docker/nginx/letsencrypt:/etc/letsencrypt
-      
+
   onenav:
     image: jaraim/onenav:0.9.32
     container_name: onenav
-    restart: unless-stopped 
+    restart: unless-stopped
     ports:
       - 8088:80
     volumes:
       - ./docker/onenav:/data/wwwroot/default/data
-      
-  wordpress: 
-    image: jaraim/wordpress:latest 
+
+  wordpress:
+    image: jaraim/wordpress:latest
     container_name: wordpress
-    restart: unless-stopped  
-    ports: 
-      - 8080:80  
-    depends_on: 
+    restart: unless-stopped
+    ports:
+      - 8080:80
+    depends_on:
       - mysql
-    environment:  
-      - WORDPRESS_DB_HOST=mysql  
-      - WORDPRESS_DB_USER=exampleuser      
-      - WORDPRESS_DB_PASSWORD=examplepass  
-      - WORDPRESS_DB_NAME=exampledb        
-    volumes: 
+    environment:
+      - WORDPRESS_DB_HOST=mysql
+      - WORDPRESS_DB_USER=exampleuser
+      - WORDPRESS_DB_PASSWORD=examplepass
+      - WORDPRESS_DB_NAME=exampledb
+    volumes:
       - ./docker/wordpress:/var/wordpress/www/html
 
-  mysql: 
-    image: jaraim/mysql 
+  mysql:
+    image: jaraim/mysql
     container_name: mysql
-    restart: unless-stopped  
+    restart: unless-stopped
     ports:
       - 3306:3306
-    environment: 
-      - MYSQL_DATABASE=exampledb  
-      - MYSQL_USER=exampleuser     
-      - MYSQL_PASSWORD=examplepass  
-      - MYSQL_RANDOM_ROOT_PASSWORD= 1 
-    volumes: 
+    environment:
+      - MYSQL_DATABASE=exampledb
+      - MYSQL_USER=exampleuser
+      - MYSQL_PASSWORD=examplepass
+      - MYSQL_RANDOM_ROOT_PASSWORD=1
+    volumes:
       - ./docker/wordpress/mysql:/var/lib/mysql
-      
+
   freshrss:
     image: jaraim/freshrss:latest
     container_name: freshrss
-    restart: unless-stopped 
+    restart: unless-stopped
     logging:
       options:
         max-size: 10m
@@ -89,18 +89,17 @@ volumes:
       LISTEN: 0.0.0.0:80
       TRUSTED_PROXY: 0.0.0.0
       OIDC_ENABLED: 0
-      
-  chatgpt: 
+
+  chatgpt:
     image: jaraim/chatgpt:latest
     container_name: chatgpt
-    restart: unless-stopped   
+    restart: unless-stopped
     ports:
       - 8899:8899
     volumes:
       - ./docker/chatgpt/data:/data
-    environment: 
-      - PANDORA_CLOUD=cloud  
-      - PANDORA_SERVER=0.0.0.0:8899  
-      - OPENAI_API_KEY=YOUR_API_KEY  
+    environment:
+      - PANDORA_CLOUD=cloud
+      - PANDORA_SERVER=0.0.0.0:8899
+      - OPENAI_API_KEY=YOUR_API_KEY
       - OPENAI_ACCESS_TOKEN=YOUR_ACCESS_TOKEN
-#" > compose.yml

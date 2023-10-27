@@ -8,8 +8,8 @@ services:
       options:
         max-size: 10m
     volumes:
-      - ./docker/data:/var/www/FreshRSS/data
-      - ./docker/extensions:/var/www/FreshRSS/extensions
+      - ./docker/freshrss/data:/var/www/FreshRSS/data
+      - ./docker/freshrss/extensions:/var/www/FreshRSS/extensions
     ports:
       - "8081:80"
     environment:
@@ -21,6 +21,5 @@ services:
       OIDC_ENABLED: 0
 
 volumes:
-  data:
-  extensions:
+  freshrss:
 #" > compose.yml

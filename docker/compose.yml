@@ -4,14 +4,9 @@ echo "
   xui:
   nginx:
   onenav:
-echo "
- version: '3.8'
- volumes:
-  xui:
-  nginx:
-  onenav:
   wordpress:
   mysql:
+  freshrss:
   chatgpt: 
   
  services:

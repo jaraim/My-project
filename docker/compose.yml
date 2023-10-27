@@ -1,6 +1,6 @@
 #echo "
- version: '3.8'
- volumes:
+version: '3.8'
+volumes:
    xui:
    nginx:
    onenav:

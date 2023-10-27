@@ -8,8 +8,8 @@ services:
       options:
         max-size: 10m
     volumes:
-      - data:/var/www/FreshRSS/data
-      - extensions:/var/www/FreshRSS/extensions
+      - ./docker/data:/var/www/FreshRSS/data
+      - ./docker/extensions:/var/www/FreshRSS/extensions
     ports:
       - "8081:80"
     environment:
@@ -17,7 +17,7 @@ services:
       CRON_MIN: '2,32'
       FRESHRSS_ENV: development
       LISTEN: 0.0.0.0:80
-      TRUSTED_PROXY: 172.16.0.1/12 192.168.0.1/16
+      TRUSTED_PROXY: 0.0.0.0
       OIDC_ENABLED: 0
 
 volumes:

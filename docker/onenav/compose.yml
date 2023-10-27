@@ -10,5 +10,5 @@ services:
     ports:
       - 8088:80
     volumes:
-      - /data/onenav:/data/wwwroot/default/data
+      - ./docker/onenav:/data/wwwroot/default/data
 #" > compose.yml

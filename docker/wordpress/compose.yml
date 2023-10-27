@@ -1,37 +1,35 @@
 #echo "
 version: '3.8' 
-
 services: 
-
-  wordpress: # 配置wordpress服务
-    image: jaraim/wordpress:latest # 使用wordpress镜像
+  wordpress: 
+    image: jaraim/wordpress:latest 
     container_name: wordpress
-    restart: unless-stopped  # 服务重启策略为always
-    ports: # 配置端口
-      - 8080:80  # 将容器的2000端口映射到宿主机的80端口
+    restart: unless-stopped  
+    ports: 
+      - 8080:80  
     depends_on: 
       - mysql
-    environment:  # 设置环境变量
-      - WORDPRESS_DB_HOST=mysql  #设置环境变量WORDPRESS_DB_HOST为db
-      - WORDPRESS_DB_USER=exampleuser      # 设置环境变量WORDPRESS_DB_USER为exampleuser
-      - WORDPRESS_DB_PASSWORD=examplepass  # 设置环境变量WORDPRESS_DB_PASSWORD为examplepass
-      - WORDPRESS_DB_NAME=exampledb        # 设置环境变量WORDPRESS_DB_NAME为exampledb
-    volumes: # 设置挂载
-      - wordpress:/var/wordpress/www/html  # 将宿主机的/wordpress目录挂载到容器的/var/www/html目录
+    environment:  
+      - WORDPRESS_DB_HOST=mysql  
+      - WORDPRESS_DB_USER=exampleuser      
+      - WORDPRESS_DB_PASSWORD=examplepass  
+      - WORDPRESS_DB_NAME=exampledb        
+    volumes: 
+      - ./docker/wordpress:/var/wordpress/www/html
 
-  mysql: # 配置数据库服务
-    image: jaraim/mysql # 使用mysql:5.7镜像
+  mysql: 
+    image: jaraim/mysql 
     container_name: mysql
-    restart: unless-stopped  # 服务重启策略为always
+    restart: unless-stopped  
     ports:
       - 3306:3306
-    environment: # 设置环境变量
-      - MYSQL_DATABASE=exampledb   # 设置环境变量MYSQL_DATABASE为exampledb
-      - MYSQL_USER=exampleuser     # 设置环境变量MYSQL_USER为exampleuser
-      - MYSQL_PASSWORD=examplepass  # 设置环境变量MYSQL_PASSWORD为examplepass
-      - MYSQL_RANDOM_ROOT_PASSWORD= 1 # 设置环境变量MYSQL_RANDOM_ROOT_PASSWORD为'1'
-    volumes: # 设置挂载
-      - mysql:/var/lib/mysql  # 将宿主机的/var/lib/mysql目录挂载到容器的/var/lib/mysql目录
+    environment: 
+      - MYSQL_DATABASE=exampledb  
+      - MYSQL_USER=exampleuser     
+      - MYSQL_PASSWORD=examplepass  
+      - MYSQL_RANDOM_ROOT_PASSWORD= 1 
+    volumes: 
+      - ./docker/wordpress/mysql:/var/lib/mysql
 volumes: 
   wordpress:
   mysql:

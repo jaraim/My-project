@@ -1,0 +1,40 @@
+version: '3.8'
+ 
+volumes:
+  nginx:
+  php:
+  mysql:
+  
+services:
+  nginx:
+    image: jaraim/nginx
+    container_name: nginx
+    restart: always
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - ./docker/nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./docker/nginx/certs:/etc/nginx/certs
+      - ./docker/nginx/html:/var/www/html
+
+  php:
+    image: jaraim/php
+    container_name: php
+    restart: always
+    volumes:
+      - ./docker/php/html:/var/www/html
+
+  mysql: 
+    image: jaraim/mysql 
+    container_name: mysql
+    restart: unless-stopped  
+    ports:
+      - 3306:3306
+    volumes: 
+      - ./docker/wordpress/mysql:/var/lib/mysql
+    environment: 
+      - MYSQL_DATABASE=exampledb  
+      - MYSQL_USER=exampleuser     
+      - MYSQL_PASSWORD=examplepass  
+      - MYSQL_RANDOM_ROOT_PASSWORD= 1 

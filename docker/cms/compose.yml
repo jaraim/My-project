@@ -23,7 +23,7 @@ services:
     container_name: php
     restart: always
     volumes:
-      - /root/docker/web/php/html:/var/www/html
+      - /root/docker/web/html:/var/www/html
 
   mysql: 
     image: jaraim/mysql 

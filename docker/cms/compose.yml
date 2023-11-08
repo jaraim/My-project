@@ -33,8 +33,8 @@ services:
       - 3306:3306
     volumes: 
       - /root/docker/web/mysql:/var/lib/mysql
-    environment: 
-      - MYSQL_DATABASE=exampledb  
-      - MYSQL_USER=exampleuser     
-      - MYSQL_PASSWORD=examplepass  
-      - MYSQL_RANDOM_ROOT_PASSWORD= 1 
+    environment:
+      - MYSQL_ROOT_PASSWORD=webroot
+      - MYSQL_DATABASE=web
+      - MYSQL_USER=jaraim
+      - MYSQL_PASSWORD=jaraimWU

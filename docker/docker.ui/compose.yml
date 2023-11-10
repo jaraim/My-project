@@ -1,0 +1,11 @@
+version: '3.8'
+services
+  docker.ui:
+    image: joinsunsoft/docker.ui
+    container_name: docker.ui
+    restart: unless-stopped
+    ports:
+      - "8999:8999"
+    volumes:
+      - ./docker/docker.sock:/var/run/docker.sock
+#ginghan/123456

@@ -1,7 +1,7 @@
 version: '3.8'
 services
   docker.ui:
-    image: joinsunsoft/docker.ui
+    image: jaraim/docker.ui
     container_name: docker.ui
     restart: unless-stopped
     ports:

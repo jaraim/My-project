@@ -1,4 +1,4 @@
-#echo "
+echo "
 version: '3.8'
 volumes:
    xui:
@@ -14,7 +14,9 @@ services:
     image: jaraim/x-ui
     container_name: xui
     restart: unless-stopped
-    network_mode: host
+    #network_mode: host
+    ports:
+      - 2468:54321
     volumes:
       - ./docker/xui/db:/etc/x-ui
       - ./docker/xui/cert:/root/cert
@@ -24,13 +26,14 @@ services:
     container_name: nginx
     restart: unless-stopped
     ports:
-      - 80:80
-      - 81:81
+     - 80:80
+     - 81:81
+     - 443:443
     volumes:
-      - ./docker/nginx/data:/data
-      - ./docker/nginx/cert:/root/cert
-      - ./docker/nginx/letsencrypt:/etc/letsencrypt
-      
+     - ./docker/nginx/data:/data
+     - ./docker/nginx/cert:/root/cert
+     - ./docker/nginx/letsencrypt:/etc/letsencrypt
+
   onenav:
     image: jaraim/onenav:0.9.32
     container_name: onenav
@@ -103,4 +106,4 @@ services:
       - PANDORA_SERVER=0.0.0.0:8899  
       - OPENAI_API_KEY=YOUR_API_KEY  
       - OPENAI_ACCESS_TOKEN=YOUR_ACCESS_TOKEN
-#" > compose.yml
+" > compose.yml

@@ -7,9 +7,7 @@
     image: jaraim/x-ui
     container_name: xui
     restart: unless-stopped
-    #network_mode: host
-    ports:
-      - 2468:54321
+    network_mode: host
     volumes:
       - ./docker/xui/db:/etc/x-ui/
       - ./docker/xui/cert:/root/cert/

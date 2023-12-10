@@ -1,0 +1,10 @@
+version: '3.8'
+
+services:
+  tuchuang:
+    image: halcyonazure/lsky-pro-docker:latest
+    container_name: tuchuang
+    ports:
+      - 8083:8083
+    volumes:
+      - ./docker/tuchuang:/var/www/html

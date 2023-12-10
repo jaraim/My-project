@@ -6,6 +6,6 @@ services:
     container_name: tuchuang
     restart: unless-stopped
     ports:
-      - 8089:8089
+      - 8089:80
     volumes:
       - ./docker/tuchuang:/var/www/html

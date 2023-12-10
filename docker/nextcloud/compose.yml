@@ -1,12 +1,13 @@
 version: "3.8"
-
+volumes:
+  nextcloud:
 services:
   nextcloud:
     image: nextcloud:latest
     container_name: yznextcloud
     restart: unless-stopped
     ports:
-      - "80:80"
+      - "8686:8686"
     volumes:
       - ./docker/nextcloud/config:/var/www/html/config
       - ./docker/nextcloud/data:/var/www/html/data

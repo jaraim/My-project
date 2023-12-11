@@ -6,7 +6,7 @@ services:
     ports:
       - "6806:6806"
     volumes:
-      - ./workspace:/app/data
+      - ./docker/workspace:/app/data
     environment:
       - ACCESS_AUTH_CODE=123456
       - PUID=1000

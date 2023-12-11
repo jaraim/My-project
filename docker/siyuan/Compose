@@ -9,5 +9,5 @@ services:
       - "6806:6806"
     user: "1000:1000"
     environment:
-      - ACCESS_AUTH_CODE=xxx
+      - ACCESS_AUTH_CODE=123456
       - WORKSPACE=/siyuan/workspace/

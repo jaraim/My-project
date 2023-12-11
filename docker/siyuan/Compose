@@ -3,14 +3,11 @@ version: "3.8"
 services:
   siyuan:
     image: b3log/siyuan
+    volumes:
+      - ./docker/siyuan/workspace:/siyuan/workspace
     ports:
       - "6806:6806"
-    volumes:
-      - ./docker/workspace:/app/data
+    user: "1000:1000"
     environment:
-      - ACCESS_AUTH_CODE=123456
-      - PUID=1000
-      - PGID=1000
-
-volumes:
-  workspace:
+      - ACCESS_AUTH_CODE=xxx
+      - WORKSPACE=/siyuan/workspace/

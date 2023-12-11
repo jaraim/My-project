@@ -1,0 +1,16 @@
+version: "3.8"
+
+services:
+  siyuan:
+    image: b3log/siyuan
+    ports:
+      - "6806:6806"
+    volumes:
+      - ./workspace:/app/data
+    environment:
+      - ACCESS_AUTH_CODE=123456
+      - PUID=1000
+      - PGID=1000
+
+volumes:
+  workspace:

@@ -5,7 +5,7 @@ services:
   siyuan:
     image: b3log/siyuan
     container_name: siyuan
-    command: ['--workspace=/siyuan/workspace/', '--accessAuthCode=']
+    command: ['--workspace=/siyuan/workspace/', '--accessAuthCode=xxx']
     restart: unless-stopped
     ports:
       - 6806:6806

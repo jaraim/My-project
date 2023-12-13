@@ -8,8 +8,6 @@ services:
     ports:
       - 6806:6806
     volumes:
-      - ./docker/siyuan/workspace:/siyuan/workspace:
-          chown: "1000:1000"
-          chmod: "755" 
+      - ./docker/siyuan/workspace:/siyuan/workspace
     environment:
-      - ACCESS_AUTH_CODE=${AuthCode}
+      - ACCESS_AUTH_CODE= xxx

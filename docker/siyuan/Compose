@@ -4,6 +4,7 @@ volumes:
 services:
   siyuan:
     image: b3log/siyuan
+    container_name: siyuan
     volumes:
       - ./docker/siyuan/workspace:/siyuan/workspace
     ports:

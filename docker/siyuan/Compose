@@ -1,14 +1,15 @@
-version: "3.9"
-volumes:
- siyuan:
+version: '3.9'
+
 services:
   siyuan:
-   image: b3log/siyuan
-    command: ['--workspace=/siyuan/workspace/', '--accessAuthCode=${AuthCode}']
-    user: '1000:1000'
+    image: b3log/siyuan
+    container_name: siyuan
+    restart: unless-stopped
     ports:
       - 6806:6806
     volumes:
-      - .docker/siyuan/workspace:/siyuan/workspace
-    restart: unless-stopped
-    
+      - ./docker/siyuan/workspace:/siyuan/workspace:
+          chown: "1000:1000"
+          chmod: "755" 
+    environment:
+      - ACCESS_AUTH_CODE=${AuthCode}

@@ -1,3 +1,4 @@
+#cat << EOF > compose.yml
 version: '3.9'
 volumes:
  siyuan:
@@ -13,3 +14,4 @@ services:
       - ./docker/siyuan/workspace:/siyuan/workspace
     environment:
       - LANGUAGE=zh_CN.UTF-8 
+#EOF

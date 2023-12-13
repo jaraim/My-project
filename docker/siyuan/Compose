@@ -10,5 +10,5 @@ services:
       - "6806:6806"
     user: "1000:1000"
     environment:
-      - ACCESS_AUTH_CODE=your_ACCESS_AUTH_CODE
-      - WORKSPACE=/siyuan/workspace
+      - TZ=${TimeZone}
+      - ACCESS_AUTH_CODE=${AuthCode} # Replace with your actual code

@@ -4,12 +4,13 @@ volumes:
 services:
   siyuan:
    image: b3log/siyuan
+    command: ['--workspace=/siyuan/workspace/', '--accessAuthCode=${AuthCode}']
     user: '1000:1000'
     ports:
       - 6806:6806
-restart: unless-stopped
     volumes:
-      - /siyuan/workspace:/siyuan/workspace
-    
+      - .docker/siyuan/workspace:/siyuan/workspace
+    restart: unless-stopped
     environment:
-      - ACCESS_AUTH_CODE=${AuthCode} # Replace with your actual code
+      # A list of time zone identifiers can be found at https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+      - TZ=${TimeZone}

@@ -1,5 +1,6 @@
 version: "3.8"
-
+volumes:
+ siyuan:
 services:
   siyuan:
     image: b3log/siyuan
@@ -9,5 +10,4 @@ services:
       - "6806:6806"
     user: "1000:1000"
     environment:
-      - ACCESS_AUTH_CODE=123456
-      - WORKSPACE=/siyuan/workspace/
+      - WORKSPACE=/siyuan/workspace

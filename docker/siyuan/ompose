@@ -1,13 +1,16 @@
 version: '3.9'
-
+volumes:
+ siyuan:
 services:
   siyuan:
     image: b3log/siyuan
     container_name: siyuan
+    command: ['--workspace=/siyuan/workspace/', '--accessAuthCode=']
     restart: unless-stopped
     ports:
       - 6806:6806
     volumes:
       - ./docker/siyuan/workspace:/siyuan/workspace
+         sudo chown -R 1000:1000 ./docker/siyuan/workspace
     environment:
-      - ACCESS_AUTH_CODE= xxx
+      - LANGUAGE=zh_CN.UTF-8 

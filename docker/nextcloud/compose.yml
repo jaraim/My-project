@@ -1,4 +1,4 @@
-cat <<EOF>compose.yml
+#cat <<EOF>compose.yml
 version: "3.8"
 volumes:
   nextcloud:
@@ -13,4 +13,4 @@ services:
       - ./docker/nextcloud/config:/var/www/html/config
       - ./docker/nextcloud/data:/var/www/html/data
       - ./docker/nextcloud/apps:/var/www/html/apps
-EOF
+#EOF

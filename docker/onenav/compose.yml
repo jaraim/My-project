@@ -1,4 +1,4 @@
-#echo "
+#cat << EOF > compose.yml
 version: '3.8'
 volumes:
   onenav:
@@ -11,4 +11,4 @@ services:
       - 8088:80
     volumes:
       - ./docker/onenav:/data/wwwroot/default/data
-#" > compose.yml
+#EOF

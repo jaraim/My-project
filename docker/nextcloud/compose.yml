@@ -1,4 +1,4 @@
-#cat <<EOF>compose.yml
+#cat << EOF >compose.yml
 version: "3.8"
 volumes:
   nextcloud:

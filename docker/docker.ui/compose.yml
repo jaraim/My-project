@@ -1,11 +1,11 @@
 version: '3.8'
 services:
   docker.ui:
-    image: jaraim/docker.ui
+    image: jonnyan404/docker-ui
     container_name: docker.ui
     restart: unless-stopped
     ports:
       - "8999:8999"
     volumes:
       - ./docker/docker.sock:/var/run/docker.sock
-#默认用户名/密码 ginghan/123456
+

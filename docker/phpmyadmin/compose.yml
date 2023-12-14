@@ -29,5 +29,5 @@ services:
       - MYSQL_PASSWORD=examplepass  
       - MYSQL_RANDOM_ROOT_PASSWORD= 1 
     volumes: 
-      - ./docker/wordpress/mysql:/var/lib/mysql
+      - ./docker/phpadmin/mysql:/var/lib/mysql
 #EOF

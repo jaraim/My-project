@@ -8,4 +8,4 @@ services:
       - "8999:8999"
     volumes:
       - ./docker/docker.sock:/var/run/docker.sock
-#ginghan/123456
+#默认用户名/密码 ginghan/123456

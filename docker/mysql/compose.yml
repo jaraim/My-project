@@ -12,7 +12,6 @@ services:
     volumes:
       - ./docker/mysql:/var/lib/mysql
     environment:
-      environment:
       - MYSQL_ROOT_PASSWORD=webroot
       - MYSQL_DATABASE=web
       - MYSQL_USER=jaraim

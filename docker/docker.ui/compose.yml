@@ -7,7 +7,7 @@ services:
     ports:
       - "8999:8999"
     volumes:
-      - /run/docker.sock:/var/run/docker.sock
+      - /var/run/docker.sock:/var/run/docker.sock
 
 #默认用户: dockerui
 #默认密码: dockerui

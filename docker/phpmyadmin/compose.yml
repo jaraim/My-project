@@ -9,7 +9,8 @@ services:
       - 8089:80
     depends_on: 
       - mysql
-    environment:  
+    environment: 
+      - PMA_ARBITRARY=1
       - WORDPRESS_DB_HOST=mysql  
       - WORDPRESS_DB_USER=exampleuser      
       - WORDPRESS_DB_PASSWORD=examplepass  

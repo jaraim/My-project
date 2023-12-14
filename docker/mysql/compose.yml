@@ -12,7 +12,10 @@ services:
     volumes:
       - ./docker/mysql:/var/lib/mysql
     environment:
-      - MYSQL_USER=.Values.mysql.user
-      - MYSQL_PASSWORD=.Values.mysql.password
+      environment:
+      - MYSQL_ROOT_PASSWORD=webroot
+      - MYSQL_DATABASE=web
+      - MYSQL_USER=jaraim
+      - MYSQL_PASSWORD=jaraimWU
       - LANGUAGE=zh_CN.UTF-8 
 #EOF

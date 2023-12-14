@@ -1,11 +1,13 @@
 version: '3.8'
 services:
-  docker.ui:
+  dockerui:
     image: jonnyan404/docker-ui
-    container_name: docker.ui
+    container_name: dockerui
     restart: unless-stopped
     ports:
       - "8999:8999"
     volumes:
       - ./docker/docker.sock:/var/run/docker.sock
 
+#默认用户: dockerui
+#默认密码: dockerui

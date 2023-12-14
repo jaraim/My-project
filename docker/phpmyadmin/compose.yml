@@ -1,4 +1,4 @@
-cat <<EOF>compose.yml
+#cat << EOF > compose.yml
 version: '3.9'
 services:
   phpmyadmin:
@@ -6,7 +6,7 @@ services:
     container_name: phpmyadmin
     restart: unless-stopped
     ports:
-      - 8089:8089
+      - 8089:80
     volumes:
       - ./docker/phpmyadmin/conf.d/uploads.ini:/usr/local/etc/php/conf.d/uploads.ini
-  EOF
+#EOF

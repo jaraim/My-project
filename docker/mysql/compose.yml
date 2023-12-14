@@ -1,0 +1,16 @@
+#cat << EOF > compose.yml
+version: '3.9'
+volumes:
+ mysql:
+services:
+  mysql:
+    image: jaraim/mysql:5.7.44
+    container_name: mysql
+    restart: unless-stopped
+    ports:
+      - 3306:3306
+    volumes:
+      - ./docker/mysql:/var/lib/mysql
+    environment:
+      - LANGUAGE=zh_CN.UTF-8 
+#EOF

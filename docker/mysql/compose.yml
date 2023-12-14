@@ -16,5 +16,5 @@ services:
       - MYSQL_DATABASE=web
       - MYSQL_USER=jaraim
       - MYSQL_PASSWORD=jaraimWU
-      - LANGUAGE=zh_CN.UTF-8 
+     # - LANGUAGE=zh_CN.UTF-8 
 #EOF

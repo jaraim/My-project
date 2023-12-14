@@ -4,14 +4,14 @@ version: '3'
 services:
   mysql:
     image: jaraim/mysql
-    container_name: ${CONTAINER_NAME}
+    container_name: mysql
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: ${PANEL_DB_ROOT_PASSWORD}
+      MYSQL_ROOT_PASSWORD: jaraimWU
     networks:
       - 1panel-network
     ports:
-      - ${PANEL_APP_PORT_HTTP}:3306
+      - 3306:3306
     volumes:
       - ./data/:/var/lib/mysql
       - ./conf/my.cnf:/etc/mysql/my.cnf

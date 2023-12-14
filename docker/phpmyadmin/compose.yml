@@ -9,4 +9,7 @@ services:
       - 8089:80
     volumes:
       - ./docker/phpmyadmin/conf.d/uploads.ini:/usr/local/etc/php/conf.d/uploads.ini
+    environment:
+      - PMA_HOST=mysql
+      - PMA_PORT=3306
 #EOF

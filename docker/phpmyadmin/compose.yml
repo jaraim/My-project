@@ -7,27 +7,8 @@ services:
     restart: unless-stopped
     ports:
       - 8089:80
-    depends_on: 
-      - mysql
     environment: 
-      - PMA_ARBITRARY=1
-      - WORDPRESS_DB_HOST=mysql  
-      - WORDPRESS_DB_USER=exampleuser      
-      - WORDPRESS_DB_PASSWORD=examplepass  
-      - WORDPRESS_DB_NAME=exampledb        
+      - PMA_ARBITRARY=1        
     volumes:
       - ./docker/phpmyadmin/conf.d/uploads.ini:/usr/local/etc/php/conf.d/uploads.ini
-  mysql: 
-    image: jaraim/mysql 
-    container_name: mysql
-    restart: unless-stopped  
-    ports:
-      - 3306:3306
-    environment: 
-      - MYSQL_DATABASE=exampledb  
-      - MYSQL_USER=exampleuser     
-      - MYSQL_PASSWORD=examplepass  
-      - MYSQL_RANDOM_ROOT_PASSWORD= 1 
-    volumes: 
-      - ./docker/phpadmin/mysql:/var/lib/mysql
-#EOF
+  #EOF

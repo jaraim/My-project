@@ -1,7 +1,7 @@
 version: '3.8'
 services:
   dockerui:
-    image: jonnyan404/docker-ui
+    image: jaraim/docker-ui
     container_name: dockerui
     restart: unless-stopped
     ports:

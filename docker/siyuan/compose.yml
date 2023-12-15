@@ -4,7 +4,7 @@ volumes:
  siyuan:
 services:
   siyuan:
-    image: b3log/siyuan
+    image: jaraim/siyuan
     container_name: siyuan
     command: ['--workspace=/siyuan/workspace/', '--accessAuthCode=xxx']
     restart: unless-stopped

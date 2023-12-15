@@ -16,8 +16,8 @@ services:
       - ./docker/mysql/data/:/var/lib/mysql
       - ./docker/mysql/conf/my.cnf:/etc/mysql/my.cnf
       - ./docker/mysql/log:/var/log/mysql
-      - ./docker/mysql/etc/timezone:/etc/timezone:ro
-      - ./docker/mysql/etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
     command:
       --character-set-server=utf8mb4
       --collation-server=utf8mb4_general_ci

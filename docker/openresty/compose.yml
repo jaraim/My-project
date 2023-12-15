@@ -6,13 +6,13 @@ services:
     restart: always
     network_mode: host
     volumes:
-      - ./conf/nginx.conf:/usr/local/openresty/nginx/conf/nginx.conf
-      - ./conf/fastcgi_params:/usr/local/openresty/nginx/conf/fastcgi_params
-      - ./conf/fastcgi-php.conf:/usr/local/openresty/nginx/conf/fastcgi-php.conf
-      - ./log:/var/log/nginx
-      - ./conf/conf.d:/usr/local/openresty/nginx/conf/conf.d/
-      - ./www:/www
-      - ./root:/usr/share/nginx/html
-      - /etc/localtime:/etc/localtime
+      - ./docker/openresty/conf/nginx.conf:/usr/local/openresty/nginx/conf/nginx.conf
+      - ./docker/openresty/conf/fastcgi_params:/usr/local/openresty/nginx/conf/fastcgi_params
+      - ./docker/openresty/conf/fastcgi-php.conf:/usr/local/openresty/nginx/conf/fastcgi-php.conf
+      - ./docker/openresty/log:/var/log/nginx
+      - ./docker/openresty/conf/conf.d:/usr/local/openresty/nginx/conf/conf.d/
+      - ./docker/openresty/www:/www
+      - ./docker/openresty/root:/usr/share/nginx/html
+      - ./docker/openresty/etc/localtime:/etc/localtime
     labels:
       createdBy: "Apps"

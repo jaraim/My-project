@@ -3,7 +3,7 @@ version: '3'
 
 services:
   mysql:
-    image: jaraim/mysql
+    image: jaraim/mysql:5.7.44
     container_name: mysql
     restart: always
     environment:

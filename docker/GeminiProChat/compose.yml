@@ -1,0 +1,10 @@
+version: '3'
+services:
+  geminiprochat:
+    image: howie6879/geminiprochat:v0.1.0
+    container_name: geminiprochat
+    restart: always
+    ports:
+      - "3030:3000"
+    environment:
+      - GEMINI_API_KEY=xxx

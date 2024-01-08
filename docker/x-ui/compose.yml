@@ -1,0 +1,12 @@
+ version: '3.8'
+ volumes:
+  xui:
+ services:
+  xui:
+    image: jaraim/xui
+    container_name: xui
+    restart: unless-stopped
+    ports:
+      - 2468:2468
+    volumes:
+      - ./docker/xui:/etc/x-ui

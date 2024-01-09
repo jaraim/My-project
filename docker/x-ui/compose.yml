@@ -1,12 +1,12 @@
-version: '3.8'
-volumes:
-  xui:
-services:
-  xui:
-    image: jaraim/xui:0.3.4.4
-    container_name: xui
-    restart: unless-stopped
-    network_mode: host
-    volumes:
-      - ./docker/xui/db:/etc/x-ui/
+version: '3.8' 
+volumes: 
+  xui: 
+services: 
+  xui: 
+    image: jaraim/xui:0.3.4.4 
+    container_name: xui 
+    restart: unless-stopped 
+    network_mode: host 
+    volumes: 
+      - ./docker/xui/db:/etc/x-ui/ 
       - ./docker/xui/cert:/root/cert/

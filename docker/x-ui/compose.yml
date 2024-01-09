@@ -3,8 +3,8 @@
   xui:
  services:
   xui:
-    image: jaraim/xui
-    container_name: xui:0.3.4.4
+    image: jaraim/xui:0.3.4.4
+    container_name: xui
     restart: unless-stopped
     volumes:
       - ./docker/x-ui:/etc/x-ui

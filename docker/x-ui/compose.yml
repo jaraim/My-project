@@ -4,9 +4,7 @@
  services:
   xui:
     image: jaraim/xui
-    container_name: xui
+    container_name: xui:0.3.4.4
     restart: unless-stopped
-    ports:
-      - 2468:2468
     volumes:
       - ./docker/x-ui:/etc/x-ui

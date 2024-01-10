@@ -9,5 +9,5 @@ services:
     ports:
       - 54321:54321
     volumes: 
-      - ./docker/xui/db:/etc/x-ui/ 
+      - ./docker/xui:/etc/x-ui/ 
       - ./docker/xui/cert:/root/cert/

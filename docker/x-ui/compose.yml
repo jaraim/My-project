@@ -9,6 +9,6 @@ services:
     ports:
       - 2468:54321
     volumes: 
-      - ./docker/x-ui/:/etc/x-ui/
-      - ./docker/x-ui/cert/:/etc/x-ui/cert/
+      - ./docker/x-ui/etc/x-ui/:/etc/x-ui/
+      - ./docker/x-ui/etc/x-ui/cert/:/etc/x-ui/cert/
       

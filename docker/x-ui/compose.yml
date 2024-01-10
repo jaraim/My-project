@@ -1,4 +1,4 @@
-version: '3.8'
+version: '3.9'
 volumes:
   xui:
 services:
@@ -10,4 +10,4 @@ services:
       - 54321:54321
     volumes:
       - ./docker/x-ui/etc/x-ui/:/etc/x-ui/
-      - ./docker/x-ui/etc/x-ui/cert/:/etc/x-ui/cert/
+      - ./docker/x-ui/root/cert/:/root/cert/

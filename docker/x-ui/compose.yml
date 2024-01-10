@@ -1,14 +1,13 @@
-version: '3.8' 
-volumes: 
-  xui: 
-services: 
-  xui: 
-    image: jaraim/xui:0.3.4.4 
-    container_name: xui 
-    restart: unless-stopped 
+version: '3.8'
+volumes:
+  xui:
+services:
+  xui:
+    image: jaraim/xui:0.3.4.4
+    container_name: xui
+    restart: unless-stopped
     ports:
       - 54321:54321
-    volumes: 
+    volumes:
       - ./docker/x-ui/etc/x-ui/:/etc/x-ui/
       - ./docker/x-ui/etc/x-ui/cert/:/etc/x-ui/cert/
-      

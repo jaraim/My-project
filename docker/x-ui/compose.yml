@@ -7,7 +7,7 @@ services:
     container_name: xui 
     restart: unless-stopped 
     ports:
-      - 2468:54321
+      - 54321:54321
     volumes: 
       - ./docker/xui/db:/etc/x-ui/ 
       - ./docker/xui/cert:/root/cert/

@@ -28,12 +28,12 @@ VERSION=$(curl -s "https://api.github.com/repos/1Panel-dev/1Panel/releases/lates
 FILE_URL="https://github.com/1Panel-dev/1Panel/archive/refs/tags/v${VERSION}.tar.gz"
 
 # 5. 如果已存在相同版本的文件，则跳过下载
-if [ -f "1Panel-v${architecture}.tar.gz" ]; then
+if [ -f "1Panel-linux-${architecture}.tar.gz" ]; then
     echo "文件存在，将跳过下载."
 else
     # 6. 下载最新的 1Panel 安装包（如果不存在）
-    echo "正在下载 1Panel-v${VERSION} 安装包"
-    curl -L ${FILE_URL} -o 1Panel-v${architecture}.tar.gz
+    echo "正在下载 1Panel-${VERSION} 安装包"
+    curl -L ${FILE_URL} -o 1Panel-linux-${architecture}.tar.gz
     # 如果下载失败，停止执行脚本
     if [ "$?" != "0" ]; then
         echo "下载失败，请检查您的网络连接."
@@ -42,7 +42,7 @@ else
 fi
 
 # 7. 解压安装包并开始执行软件安装
-tar zxvf 1Panel-v${architecture}.tar.gz && cd 1Panel-v${VERSION} && bash ./1Panel.sh
+tar zxvf 1Panel-linux-${architecture}.tar.gz && cd 1Panel-${VERSION} && bash ./1Panel.sh
 
 # 删除下载的压缩包
-rm -f 1Panel-v${architecture}.tar.gz
+rm -f 1Panel-linux-${architecture}.tar.gz

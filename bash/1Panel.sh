@@ -1,7 +1,5 @@
-#!/bin/bash
-
 # 1. 获取系统架构信息
-osCheck=`uname -a`
+osCheck=$(uname -a)
 if [[ $osCheck =~ 'x86_64' ]];then
     architecture="amd64"
 elif [[ $osCheck =~ 'arm64' ]] || [[ $osCheck =~ 'aarch64' ]];then
@@ -26,7 +24,8 @@ fi
 VERSION=$(curl -s "https://api.github.com/repos/1Panel-dev/1Panel/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
 
 # 4. 拼接普通版本下载链接
-FILE_URL="https://github.com/1Panel-dev/1Panel/releases/download/${VERSION}/x-ui-linux-${architecture}.tar.gz"
+# 这里已经根据你的请求使用你提供的链接：
+FILE_URL="https://github.com/1Panel-dev/1Panel/archive/refs/tags/v${VERSION}.tar.gz"
 
 # 5. 如果已存在相同版本的文件，则跳过下载
 if [ -f "1Panel-linux-${architecture}.tar.gz" ]; then
@@ -43,7 +42,7 @@ else
 fi
 
 # 7. 解压安装包并开始执行软件安装
-tar zxvf 1Panel-linux-${architecture}.tar.gz && cd 1Panel && bash ./1Panel.sh
+tar zxvf 1Panel-linux-${architecture}.tar.gz && cd 1Panel-${VERSION} && bash ./1Panel.sh
 
 # 删除下载的压缩包
 rm -f 1Panel-linux-${architecture}.tar.gz

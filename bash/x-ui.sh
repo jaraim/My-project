@@ -24,10 +24,10 @@ if [[ ! ${INSTALL_MODE} ]]; then
 fi
 
 # 3. 从Github API获取最新版本信息
-VERSION=$(curl -s "https://api.github.com/repos/vaxilu/x-ui/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
+VERSION=$(curl -s "https://api.github.com/repos/FranzKafkaYu/x-ui/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
 
 # 4. 拼接普通版本下载链接
-FILE_URL="https://github.com/vaxilu/x-ui/releases/download/${VERSION}/x-ui-linux-${architecture}.tar.gz"
+FILE_URL="https://github.com/FranzKafkaYu/x-ui/releases/download/${VERSION}/x-ui-linux-${architecture}.tar.gz"
 
 # 5. 如果已存在相同版本的文件，则跳过下载
 if [ -f "x-ui-linux-${architecture}.tar.gz" ]; then

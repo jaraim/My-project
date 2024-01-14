@@ -25,7 +25,7 @@ VERSION=$(curl -s "https://api.github.com/repos/1Panel-dev/1Panel/releases/lates
 
 # 4. 拼接普通版本下载链接
 # 这里已经根据你的请求使用你提供的链接：
-FILE_URL="https://github.com/1Panel-dev/1Panel/archive/refs/tags/v${VERSION}.tar.gz"
+FILE_URL="https://github.com/1Panel-dev/1Panel/archive/refs/tags/${VERSION}.tar.gz"
 
 # 5. 如果已存在相同版本的文件，则跳过下载
 if [ -f "1Panel-linux-${architecture}.tar.gz" ]; then

@@ -44,4 +44,7 @@ else
 fi
 
 # 7. 解压安装包并开始执行软件安装
-tar zxvf x-ui-linux-${architecture}.tar.gz && cd x-ui && ./x-ui.sh
+tar zxvf x-ui-linux-${architecture}.tar.gz && cd x-ui && bash ./x-ui.sh
+
+# 删除下载的压缩包
+rm -f x-ui-linux-${architecture}.tar.gz

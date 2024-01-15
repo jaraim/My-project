@@ -1,0 +1,21 @@
+#cat<<EOF>compose.yml
+version: '3.9'
+services:
+  qinglong:
+    image: whyour/qinglong:latest
+    container_name: qinglong
+    ports:
+      - 5700:5700
+    
+    #depends_on: 
+    
+    restart: unless-stopped 
+    
+    volumes:
+      - .docker/ql/data:/ql/data
+    
+    #environment: 
+    
+volumes:
+  qinglong:
+#EOF

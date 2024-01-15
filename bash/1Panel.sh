@@ -46,8 +46,7 @@ tar zxvf 1Panel-${VERSION}.tar.gz
 VERSION=${VERSION#v}
 
 # 9 进入解压出的1Panel目录，并执行安装脚本install.sh
-cd 1Panel-${VERSION} 
+cd 1Panel-${VERSION} && bash script.sh && bash install.sh
 
 # 10 删除下载的文件
 rm -f 1Panel-${VERSION}.tar.gz
-/bin/bash install.sh

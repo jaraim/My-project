@@ -42,8 +42,11 @@ fi
 # 7 解压下载的文件
 tar zxvf 1Panel-${VERSION}.tar.gz
 
-# 8 进入解压出的1Panel目录，并执行安装脚本install.sh
-cd 1Panel-${VERSION#v} && bash ./install.sh
+# 8 修改版本号，去掉 "v"
+VERSION=${VERSION#v}
 
-# 9 删除下载的文件
+# 9 进入解压出的1Panel目录，并执行安装脚本install.sh
+cd 1Panel-${VERSION} && bash ./install.sh
+
+# 10 删除下载的文件
 rm -f 1Panel-${VERSION}.tar.gz

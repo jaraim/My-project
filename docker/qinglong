@@ -1,0 +1,9 @@
+version: '3.3'
+services:
+  qinglong:
+    image: whyour/qinglong:latest
+    volumes:
+      - ./ql/data:/ql/data
+    ports:
+      - 5700:5700
+    restart: unless-stopped

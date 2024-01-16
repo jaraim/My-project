@@ -22,7 +22,7 @@ services:
 
   db:
     image: mongo:latest
-    container_name: mongo
+    container_name: db
     ports:
       - 27017:27017
     restart: unless-stopped 
@@ -40,8 +40,8 @@ EOF
 docker-compose up -d 
 
 # 检查 db 容器是否正在运行，然后在其中运行命令
-if [ "$(docker inspect -f '{{.State.Running}}' mongo)" == "true" ]; then
-    docker exec -it mongo mongosh --eval "printjson(rs.initiate())"
+if [ "$(docker inspect -f '{{.State.Running}}' db)" == "true" ]; then
+    docker exec -it db mongosh --eval "printjson(rs.initiate())"
 else
-    echo "MongoDB 容器未运行."
+    echo "DB 容器未运行."
 fi

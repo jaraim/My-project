@@ -41,6 +41,8 @@ fi
 
 # 7 解压下载的文件
 tar zxvf 1Panel-${VERSION}.tar.gz
+echo "Unzipped files:"
+ls
 
 # 8 修改版本号，去掉 "v"
 VERSION=${VERSION#v} && chmod +x 1Panel-${VERSION} 

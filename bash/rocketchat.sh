@@ -23,8 +23,6 @@ services:
   mongo:
     image: mongo:latest
     container_name: mongo
-    ports:
-      - 27017:27017
     restart: unless-stopped 
     command: --replSet rs5 --oplogSize 256
 

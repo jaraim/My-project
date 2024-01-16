@@ -45,7 +45,7 @@ echo "Unzipped files:"
 ls
 
 # 8 修改版本号，去掉 "v"
-VERSION=${VERSION#v} && chmod +x 1Panel-${VERSION} 
+#VERSION=${VERSION#v} && chmod +x 1Panel-${VERSION} 
 
 # 9 进入解压出的1Panel目录，并执行安装脚本install.sh
 cd 1Panel-${VERSION} && bash script.sh && bash install.sh

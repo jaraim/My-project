@@ -1,20 +1,19 @@
 #!/bin/bash
 
-# 下载 gdrive
+# 下载最新版的gdrive
 wget "https://github.com/prasmussen/gdrive/releases/download/2.1.1/gdrive_2.1.1_linux_amd64.tar.gz"
 
-# 解压 gdrive
+# 解压 tar.gz 文件
 tar -xzvf gdrive_2.1.1_linux_amd64.tar.gz
+rm gdrive_2.1.1_linux_amd64.tar.gz
 
-# 复制 gdrive 二进制文件到路径
-sudo mv gdrive /usr/local/bin
+# 找到当前目录下的gdrive可执行文件
+GDRIVE_EXEC=$(find . -name 'gdrive' -type f)
 
-# 给予权限
-sudo chmod +x /usr/local/bin/gdrive
+chmod +x $GDRIVE_EXEC
 
 # 将gdrive安装到 /usr/local/bin 
-sudo install gdrive /usr/local/bin/gdrive
-rm gdrive
+sudo mv $GDRIVE_EXEC /usr/local/bin/gdrive
 
 # 验证安装结果
 if [ -x "$(command -v gdrive)" ]; then

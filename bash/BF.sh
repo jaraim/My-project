@@ -1,12 +1,11 @@
 #!/bin/bash
 
 # 下载最新版的gdrive
-wget "https://github.com/prasmussen/gdrive/releases/download/2.1.1/gdrive_2.1.1_linux_amd64.tar.gz"
+wget "https://github.com/glotlabs/gdrive/releases/download/3.9.0/gdrive_linux-x64.tar.gz"
 
 # 解压 tar.gz 文件
-tar -xzvf gdrive_2.1.1_linux_amd64.tar.gz
-rm gdrive_2.1.1_linux_amd64.tar.gz
-
+tar -xzvf gdrive_linux_x64.tar.gz
+rm gdrive_linux_x64.tar.gz
 # 找到当前目录下的gdrive可执行文件
 GDRIVE_EXEC=$(find . -name 'gdrive' -type f)
 

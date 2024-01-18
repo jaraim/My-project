@@ -10,7 +10,7 @@ services:
     ports:
       - 8890:3000
     depends_on: 
-      - mongo
+      - db
     restart: unless-stopped 
 
     volumes:
@@ -18,12 +18,12 @@ services:
 
     environment: 
       - ROOT_URL=http://localhost
-      - MONGO_DB_URL=mongodb://mongo:27017/mongo
-      - MONGO_OPLOG_URL=mongodb://mongo:27017/rs5 
+      - MONGO_DB_URL=mongodb://db:27017/mongo
+      - MONGO_OPLOG_URL=mongodb://db:27017/rs5 
 
-  mongo:
+  db:
     image: mongo:latest
-    container_name: mongo
+    container_name: db
     ports:
       - 27017:27017
     restart: unless-stopped 
@@ -34,15 +34,15 @@ services:
       - ./docker/chat/mongo/configdb:/data/configdb
 volumes:
     rocketchat:
-    mongo:
+    db:
 EOF
 
 # 运行浏览器可执行文件以启动 docker-compose 进程
 docker-compose up -d 
 
 # 检查 mongo容器是否正在运行，然后在其中运行命令
-if [ "$(docker inspect -f '{{.State.Running}}' mongo)" == "true" ]; then
-    docker exec -it mongo mongosh --eval "printjson(rs.initiate())"
+if [ "$(docker inspect -f '{{.State.Running}}' db)" == "true" ]; then
+    docker exec -it db mongosh --eval "printjson(rs.initiate())"
 else
-    echo "mongo 容器未运行."
+    echo "db 容器未运行."
 fi

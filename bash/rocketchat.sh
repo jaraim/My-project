@@ -18,7 +18,7 @@ services:
 
     environment: 
       - ROOT_URL=http://localhost
-      - MONGO_DB_URL=mongo
+      - MONGO_DB_URL=mongodb://mongo:27017/mongo
       - MONGO_OPLOG_URL=mongodb://mongo:27017/rs5 
 
   mongo:

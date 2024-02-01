@@ -3,12 +3,12 @@ services:
   www:
     image: tokumeikoi/lcrp
     volumes:
-      - ./docker/www:/www
-      - ./docker/wwwlogs:/wwwlogs
-      - ./docker/caddy.conf:/run/caddy/caddy.conf
-      - ./docker/supervisord.conf:/run/supervisor/supervisord.conf
-      - ./docker/crontabs.conf:/etc/crontabs/root
-      - ./docker/.caddy:/root/.caddy
+      - ./docker/v2board/www:/www
+      - ./docker/v2board/wwwlogs:/wwwlogs
+      - ./docker/v2board/caddy.conf:/run/caddy/caddy.conf
+      - ./docker/v2board/supervisord.conf:/run/supervisor/supervisord.conf
+      - ./docker/v2board/crontabs.conf:/etc/crontabs/root
+      - ./docker/v2board/.caddy:/root/.caddy
     ports:
       - '80:80'
       - '443:443'
@@ -16,7 +16,7 @@ services:
   mysql:
     image: jaraim/mysql:5.7.44
     volumes:
-      - ./docker/mysql:/var/lib/mysql
+      - ./docker/v2board/mysql:/var/lib/mysql
     restart: always
     environment: 
       MYSQL_ROOT_PASSWORD: jaraim

@@ -19,5 +19,5 @@ services:
       - './docker/mysql:/var/lib/mysql'
     restart: always
     environment: 
-      MYSQL_ROOT_PASSWORD: v2boardisbest
+      MYSQL_ROOT_PASSWORD: jaraim
       MYSQL_DATABASE: v2board

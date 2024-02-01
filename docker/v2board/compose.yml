@@ -14,7 +14,7 @@ services:
       - '443:443'
     restart: always
   mysql:
-    image: mysql:5.7.29
+    image: jaraim/mysql:5.7.44
     volumes:
       - './docker/mysql:/var/lib/mysql'
     restart: always

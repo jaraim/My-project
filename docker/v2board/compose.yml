@@ -3,15 +3,15 @@ services:
   www:
     image: tokumeikoi/lcrp
     volumes:
-      - ./docker/v2board/www:/www
-      - ./docker/v2board/wwwlogs:/wwwlogs
+      - ./docker/v2board/www/:/www
+      - ./docker/v2board/wwwlogs/:/wwwlogs
       - ./docker/v2board/caddy.conf:/run/caddy/caddy.conf
       - ./docker/v2board/supervisord.conf:/run/supervisor/supervisord.conf
       - ./docker/v2board/crontabs.conf:/etc/crontabs/root
       - ./docker/v2board/.caddy:/root/.caddy
     ports:
-      - '80:80'
-      - '443:443'
+      - 80:80
+      - 443:443
     restart: always
   mysql:
     image: jaraim/mysql:5.7.44

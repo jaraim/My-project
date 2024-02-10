@@ -1,6 +1,6 @@
 version: '3.9'
- services:
-  mysql:
+services:
+ mysql:
     image: mysql:5.7.33
     container_name: db_mysql
     ports:
@@ -30,4 +30,3 @@ version: '3.9'
     links:
       - mysql
     restart: always
-EOF

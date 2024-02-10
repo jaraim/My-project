@@ -1,0 +1,33 @@
+version: '3.9'
+ services:
+  mysql:
+    image: mysql:5.7.33
+    container_name: db_mysql
+    ports:
+      - 3306:3306
+    environment:
+      - MYSQL_DATABASE=mydev
+      - MYSQL_ROOT_USER=root
+      - MYSQL_ROOT_PASSWORD=12345678
+      - MYSQL_USER=dbadmin
+      - MYSQL_PASSWORD=12345678
+      - TZ='Asia/Tokyo'
+    volumes:
+      - ./docker/mysql/initdb:/docker-entrypoint-initdb.d # 启动初期数据设定
+      - ./docker/mysql/datadir:/var/lib/mysql # 数据库数据存储位置指定
+      - ./docker/mysql/my.cnf:/etc/mysql/conf.d/my.cnf # MySQL设置文件
+    restart: always
+  phpmyadmin:
+    image: phpmyadmin:latest
+    container_name: web_phpmyadmin
+    ports:
+      - 8099:80
+    environment:
+      # - PMA_ARBITRARY=1
+      - PMA_HOST=mysql
+      - PMA_USER=root
+      - PMA_PASSWORD=12345678
+    links:
+      - mysql
+    restart: always
+EOF

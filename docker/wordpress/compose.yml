@@ -8,7 +8,7 @@ services:
     ports: 
       - 8080:80  
     depends_on: 
-      - mysql
+      - wordpressdb
     environment:  
       - WORDPRESS_DB_HOST=mysql  
       - WORDPRESS_DB_USER=exampleuser      
@@ -17,9 +17,9 @@ services:
     volumes: 
       - ./docker/wordpress:/var/wordpress/www/html
 
-  mysql: 
+  wordpressdb: 
     image: jaraim/mysql 
-    container_name: mysql
+    container_name: wordpressdb
     restart: unless-stopped  
     ports:
       - 3306:3306
@@ -32,5 +32,5 @@ services:
       - ./docker/wordpress/mysql:/var/lib/mysql
 volumes: 
   wordpress:
-  mysql:
+  wordpressdb:
 #" > compose.yml

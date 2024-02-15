@@ -4,7 +4,7 @@ services:
     image: tokumeikoi/lcrp
     container_name: v2board
     ports:
-      - '8083:80'
+      - 8083:80
     restart: always
     depends_on: 
       - v2boardb
@@ -24,7 +24,7 @@ services:
     image: jaraim/mysql:5.7.44
     container_name: v2boardb
     ports:
-      -  '3308:3306'
+      -  3308:3306
     restart: always 
     volumes:
       - ./docker/v2board/mysql:/var/lib/mysql

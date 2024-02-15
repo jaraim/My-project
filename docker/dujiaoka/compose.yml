@@ -13,6 +13,7 @@ services:
       - ./docker/dujiaoka/env.conf:/dujiaoka/.env
       - ./docker/dujiaoka/uploads:/dujiaoka/public/uploads
       - ./docker/dujiaoka/storage:/dujiaoka/storage
+      ./docker/dujiaoka/storage/logs:/dujiaoka/storage/logs
     environment:
       - DUJIAOKA_DB_HOST=dujiaodb
       - DUJIAOKA_DB_USER=exampleuser

@@ -11,5 +11,6 @@ services:
       - ./docker/phpmyadmin/conf.d/uploads.ini:/usr/local/etc/php/conf.d/uploads.ini
     environment: 
       - PMA_ARBITRARY=1
+      - MYSQL_ROOT_PASSWORD=jaraimWU
       - LANGUAGE=zh_CN.UTF-8 
   #EOF

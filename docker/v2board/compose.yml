@@ -1,22 +1,35 @@
-version: '3'
+version: '3.9'
 services:
-  www:
+  v2board:
     image: tokumeikoi/lcrp
+    container_name: v2board
+    ports:
+      - '8083:80'
+    restart: always
+    depends_on: 
+      - v2boardb
     volumes:
       - ./docker/v2board/www:/www
       - ./docker/v2board/wwwlogs:/wwwlogs
       - ./docker/v2board/caddy.conf:/run/caddy/caddy.conf
       - ./docker/v2board/supervisord.conf:/run/supervisor/supervisord.conf
       - ./docker/v2board/.caddy:/root/.caddy
-    ports:
-      - '80:80'
-      - '443:443'
-    restart: always
-  mysql:
+    environment:  
+      - V2BOARD_DB_HOST=v2boardb
+      - V2BOARD_DB_USER=exampleuser      
+      - V2BOARD_DB_PASSWORD=examplepass  
+      - V2BOARD_DB_NAME=exampledb        
+    
+  v2boardb:
     image: jaraim/mysql:5.7.44
+    container_name: v2boardb
+    ports:
+      -  '3308:3306'
+    restart: always 
     volumes:
       - ./docker/v2board/mysql:/var/lib/mysql
-    restart: always
     environment: 
-      MYSQL_ROOT_PASSWORD: jaraim
-      MYSQL_DATABASE: v2board
+      - MYSQL_DATABASE=exampledb  
+      - MYSQL_USER=exampleuser     
+      - MYSQL_PASSWORD=examplepass  
+      - MYSQL_RANDOM_ROOT_PASSWORD= 1   

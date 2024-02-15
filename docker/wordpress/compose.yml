@@ -10,7 +10,7 @@ services:
     depends_on: 
       - wordpressdb
     environment:  
-      - WORDPRESS_DB_HOST=mysql
+      - WORDPRESS_DB_HOST=wordpressdb
       - WORDPRESS_DB_USER=exampleuser      
       - WORDPRESS_DB_PASSWORD=examplepass  
       - WORDPRESS_DB_NAME=exampledb        

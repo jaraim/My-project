@@ -18,6 +18,13 @@ services:
       - DUJIAOKA_DB_PASSWORD=examplepass
       - DUJIAOKA_DB_NAME=exampledb
       - INSTALL=true
+      - REDIS_HOST=redis
+      - REDIS_PASSWORD=
+      - REDIS_PORT=6379
+      - BROADCAST_DRIVER=log
+      - SESSION_DRIVER=file
+      - SESSION_LIFETIME=120
+  
   dujiaodb:
     image: mariadb:focal
     container_name: dujiaodb
@@ -31,8 +38,11 @@ services:
       - MYSQL_RANDOM_ROOT_PASSWORD=1
     volumes:
       - ./docker/dujiaoka/mysql:/var/lib/mysql
+
   redis:
     image: redis:alpine
     restart: unless-stopped
+    ports:
+      - 6379:6379
     volumes:
       - ./docker/dujiaoka/redis:/data

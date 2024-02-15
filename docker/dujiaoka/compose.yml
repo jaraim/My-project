@@ -18,7 +18,7 @@ services:
       - DUJIAOKA_DB_USER=exampleuser
       - DUJIAOKA_DB_PASSWORD=examplepass
       - DUJIAOKA_DB_NAME=exampledb
-      - INSTALL=true
+      - INSTALL=false
       - REDIS_HOST=redis
       - REDIS_PASSWORD=
       - REDIS_PORT=6379

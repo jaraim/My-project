@@ -5,7 +5,7 @@ services:
     container_name: dujiaoka
     restart: unless-stopped
     ports:
-      - 8081:80
+      - 8090:80
     depends_on:
       - dujiaodb
       - redis

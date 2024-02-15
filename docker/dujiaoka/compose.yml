@@ -1,0 +1,38 @@
+version: '3.9'
+services:
+  dujiaoka:
+    image: stilleshan/dujiaoka
+    container_name: dujiaoka
+    restart: unless-stopped
+    ports:
+      - 8081:80
+    depends_on:
+      - dujiaodb
+    volumes:
+      - ./docker/dujiaoka/env.conf:/dujiaoka/.env
+      - ./docker/dujiaoka/uploads:/dujiaoka/public/uploads
+      - ./docker/dujiaoka/storage:/dujiaoka/storage
+    environment:
+      - DUJIAOKA_DB_HOST=dujiaodb
+      - DUJIAOKA_DB_USER=exampleuser
+      - DUJIAOKA_DB_PASSWORD=examplepass
+      - DUJIAOKA_DB_NAME=exampledb
+      - INSTALL=true
+  dujiaodb:
+    image: mariadb:focal
+    container_name: dujiaodb
+    restart: unless-stopped
+    ports:
+      - 3309:3306
+    environment:
+      - MYSQL_DATABASE=exampledb
+      - MYSQL_USER=exampleuser
+      - MYSQL_PASSWORD=examplepass
+      - MYSQL_RANDOM_ROOT_PASSWORD=1
+    volumes:
+      - ./docker/dujiaoka/mysql:/var/lib/mysql
+  redis:
+    image: redis:alpine
+    restart: unless-stopped
+    volumes:
+      - ./docker/dujiaoka/redis:/data

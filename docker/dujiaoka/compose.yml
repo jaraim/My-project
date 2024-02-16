@@ -4,7 +4,7 @@ services:
     image: jiangjuhong/dujiaoka
     container_name: dujiaoka
     ports:
-      - 9000:80
+      - 8090:80
     environment:
       - WEB_DOCUMENT_ROOT=/app/public
     restart: unless-stopped

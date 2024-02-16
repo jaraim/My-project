@@ -1,10 +1,9 @@
 #cat << EOF > compose.yml
 version: '3'
-
 services:
-  mysql:
+  cmsdb:
     image: jaraim/mysql:5.7.44
-    container_name: mysql
+    container_name: cmsdb
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: jaraimWU
@@ -13,9 +12,9 @@ services:
     ports:
       - 3306:3306
     volumes:
-      - ./docker/mysql/data/:/var/lib/mysql
-      - ./docker/mysql/conf/my.cnf:/etc/mysql/my.cnf
-      - ./docker/mysql/log:/var/log/mysql
+      - ./docker/cms/mysql/data/:/var/lib/mysql
+      - ./docker/cms/mysql/conf/my.cnf:/etc/mysql/my.cnf
+      - ./docker/cms/mysql/log:/var/log/mysql
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
     command:

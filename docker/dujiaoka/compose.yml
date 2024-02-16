@@ -1,45 +1,10 @@
 version: "3"
 services:
   dujiaoka:
-    image: stilleshan/dujiaoka
+    image: jiangjuhong/dujiaoka
     container_name: dujiaoka
+    ports:
+      - 9000:80
     environment:
-      - INSTALL=true
-      - DUJIAOKA_DB_HOST=dujiaodb
-      - DUJIAOKA_DB_USER=dujiaoka
-      - DUJIAOKA_DB_PASSWORD=changeyourpassword
-      - DUJIAOKA_DB_NAME=dujiaoka
-      - REDIS_HOST=redis
-    volumes:
-      - ./docker/dujiaoka/env.conf:/dujiaoka/.env
-      - ./docker/dujiaoka/uploads:/dujiaoka/public/uploads
-      - ./docker/dujiaoka/storage:/dujiaoka/storage
-    ports:
-      - 8090:80
-    depends_on:
-      - dujiaodb
-      - redis
-    restart: always
-
-  dujiaodb:
-    image: mariadb:focal
-    container_name: dujiaodb
-    restart: always
-    ports:
-      - 3309:3306
-    environment:
-      - MYSQL_ROOT_PASSWORD=changeyourpassword
-      - MYSQL_DATABASE=dujiaoka
-      - MYSQL_USER=dujiaoka
-      - MYSQL_PASSWORD=changeyourpassword
-    volumes:
-      - ./docker/dujiaoka/mysql:/var/lib/mysql
-
-  redis:
-    image: redis:alpine
-    container_name: redis
-    restart: always
-    ports:
-      - 6379:6379
-    volumes:
-      - ./docker/dujiaoka/redis:/data
+      - WEB_DOCUMENT_ROOT=/app/public
+    restart: unless-stopped

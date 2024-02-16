@@ -8,3 +8,26 @@ services:
     environment:
       - WEB_DOCUMENT_ROOT=/app/public
     restart: unless-stopped
+
+  dujiaodb:
+    image: mariadb:focal
+    container_name: dujiaodb
+    restart: always
+    ports:
+      - 3309:3306
+    environment:
+      - MYSQL_ROOT_PASSWORD=jaraim
+      - MYSQL_DATABASE=dujiaoka
+      - MYSQL_USER=dujiaoka
+      - MYSQL_PASSWORD=jaraim
+    volumes:
+      - ./docker/dujiaoka/mysql:/var/lib/mysql
+
+  redis:
+    image: redis:alpine
+    container_name: redis
+    ports:
+      - 6379:6379
+    restart: always
+    volumes:
+      - ./docker/dujiaoka/redis:/data

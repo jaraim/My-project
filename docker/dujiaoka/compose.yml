@@ -3,49 +3,33 @@ services:
   dujiaoka:
     image: stilleshan/dujiaoka
     container_name: dujiaoka
-    restart: unless-stopped
-    ports:
-      - 8090:80
-    depends_on:
-      - dujiaodb
-      - redis
-    volumes:
-      - ./docker/dujiaoka/uploads:/dujiaoka/public/uploads
-      - ./docker/dujiaoka/storage:/dujiaoka/storage
-      - ./docker/dujiaoka/storage/logs:/dujiaoka/storage/logs
     environment:
-      - BROADCAST_DRIVER=log
-      - SESSION_DRIVER=file
-      - SESSION_LIFETIME=120
-      - DB_CONNECTION=mysql
-      - DB_HOST=dujiaodb
-      - DB_PORT=3306
-      - DB_DATABASE=exampledb
-      - DB_USERNAME=exampleuser
-      - DB_PASSWORD=examplepass
-      - REDIS_HOST=redis
-      - REDIS_PASSWORD=
-      - REDIS_PORT=6379
+        # - INSTALL=false
+        - INSTALL=true
+        # - MODIFY=true
+    volumes:
+      - ./docker/env.conf:/dujiaoka/.env
+      - ./docker/uploads:/dujiaoka/public/uploads
+      - ./docker/storage:/dujiaoka/storage
+    ports:
+      - 8090:80         # 8090可以改成任意服务器没有使用过的端口，80不要修改
+    restart: always
 
   dujiaodb:
     image: mariadb:focal
     container_name: dujiaodb
-    restart: unless-stopped
-    ports:
-      - 3309:3306
+    restart: always
     environment:
-      - MYSQL_DATABASE=exampledb
-      - MYSQL_USER=exampleuser
-      - MYSQL_PASSWORD=examplepass
-      - MYSQL_RANDOM_ROOT_PASSWORD=1
+      - MYSQL_ROOT_PASSWORD=changeyourpassword
+      - MYSQL_DATABASE=dujiaoka
+      - MYSQL_USER=dujiaoka
+      - MYSQL_PASSWORD=changeyourpassword
     volumes:
-      - ./docker/dujiaoka/mysql:/var/lib/mysql
+      - ./docker/mysql:/var/lib/mysql
 
   redis:
     image: redis:alpine
     container_name: redis
-    restart: unless-stopped
-    ports:
-      - 6379:6379
+    restart: always
     volumes:
-      - ./docker/dujiaoka/redis:/data
+      - ./docker/redis:/data

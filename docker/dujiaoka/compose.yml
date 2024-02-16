@@ -4,20 +4,20 @@ services:
     image: stilleshan/dujiaoka
     container_name: dujiaoka
     environment:
-        # - INSTALL=false
-        - INSTALL=true
-        # - MODIFY=true
+      - INSTALL=true
     volumes:
       - ./docker/dujiaoka/env.conf:/dujiaoka/.env
       - ./docker/dujiaoka/uploads:/dujiaoka/public/uploads
       - ./docker/dujiaoka/storage:/dujiaoka/storage
     ports:
-      - 8090:80         # 8090可以改成任意服务器没有使用过的端口，80不要修改
+      - 8090:80
     restart: always
 
   dujiaodb:
     image: mariadb:focal
     container_name: dujiaodb
+    ports:
+      - 3309:3306
     restart: always
     environment:
       - MYSQL_ROOT_PASSWORD=changeyourpassword
@@ -30,6 +30,8 @@ services:
   redis:
     image: redis:alpine
     container_name: redis
+    ports:
+      - 6379:6379
     restart: always
     volumes:
       - ./docker/dujiaoka/redis:/data

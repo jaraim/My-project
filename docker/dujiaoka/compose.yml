@@ -8,9 +8,9 @@ services:
         - INSTALL=true
         # - MODIFY=true
     volumes:
-      - ./docker/env.conf:/dujiaoka/.env
-      - ./docker/uploads:/dujiaoka/public/uploads
-      - ./docker/storage:/dujiaoka/storage
+      - ./docker/dujiaoka/env.conf:/dujiaoka/.env
+      - ./docker/dujiaoka/uploads:/dujiaoka/public/uploads
+      - ./docker/dujiaoka/storage:/dujiaoka/storage
     ports:
       - 8090:80         # 8090可以改成任意服务器没有使用过的端口，80不要修改
     restart: always
@@ -25,11 +25,11 @@ services:
       - MYSQL_USER=dujiaoka
       - MYSQL_PASSWORD=changeyourpassword
     volumes:
-      - ./docker/mysql:/var/lib/mysql
+      - ./docker/dujiaoka/mysql:/var/lib/mysql
 
   redis:
     image: redis:alpine
     container_name: redis
     restart: always
     volumes:
-      - ./docker/redis:/data
+      - ./docker/dujiaoka/redis:/data

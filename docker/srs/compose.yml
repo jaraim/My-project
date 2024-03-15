@@ -4,7 +4,6 @@ services:
   srs-cloud:
     image: ossrs/srs-cloud:platform-1
     restart: always
-    detach: true
     ports:
       - "2022:2022"
       - "1935:1935"

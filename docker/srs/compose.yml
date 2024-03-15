@@ -1,0 +1,36 @@
+version: "3.8"
+
+services:
+  srs-cloud:
+    image: ossrs/srs-cloud:platform-1
+    restart: always
+    detach: true
+    ports:
+      - "2022:2022"
+      - "1935:1935"
+      - "1985:1985"
+      - "8081:8080"
+      - "8000:8000/udp"
+      - "10080:10080/udp"
+    volumes:
+      - "/root/docker/srs/db:/data"
+    environment:
+      - LICENSE_KEY="your_license_key"  # 替换为您的许可证密钥
+      - SRS_CONF_FILE="/etc/srs/srs.conf"  # SRS 配置文件路径
+      - SRS_LOG_TANK="console"  # 日志输出目标
+      - SRS_HTTP_API_ENABLED="on"  # 启用 HTTP API
+      - SRS_HTTP_SERVER_ENABLED="on"  # 启用 HTTP 服务器
+      - SRS_STATS_ENABLED="on"  # 启用统计信息收集
+      - SRS_RTC_SERVER_ENABLED="on"  # 启用 RTC 服务器
+      - SRS_VHOST_ENABLED="on"  # 启用虚拟主机
+      - SRS_HLS_ENABLED="on"  # 启用 HLS 流
+      - SRS_HTTP_REMUX_ENABLED="on"  # 启用 HTTP Remux
+      - SRS_RTC_BFRAME_DISCARD="on"  # 丢弃 B 帧
+
+networks:
+  srs-cloud:
+    name: srs-cloud
+
+volumes:
+  srs-db:
+    driver: local

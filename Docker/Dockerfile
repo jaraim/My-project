@@ -2,8 +2,8 @@ FROM python:3.10-alpine
 
 WORKDIR /app
 
-COPY ./Docker-Docker Compose转换 /app
+COPY ./converter.py /app
 
-RUN pip install gradio pyperclip pyyaml
+RUN pip install gradio pyperclip
 
-CMD ["gunicorn", "-b", "0.0.0.0:7860", "转换:demo"]
+CMD ["python", "converter.py"]

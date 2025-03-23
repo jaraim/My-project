@@ -14,7 +14,8 @@ sudo apt update
 sudo apt install -y docker-ce docker-ce-cli containerd.io
 
 # 安装 Docker Compose
-sudo curl -L "https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+DOCKER_COMPOSE_URL="https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m)"
+sudo curl -L "$DOCKER_COMPOSE_URL" -o /usr/local/bin/docker-compose
 sudo chmod +x /usr/local/bin/docker-compose
 
 # 清理不必要的包和缓存
